@@ -7,6 +7,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="favicon2.png">
 
   <style>
     :root {
@@ -269,6 +270,74 @@
 #relationshipCountdown {
   color: #7a7a7a;
 }
+
+.color-palette {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #faf9f7;
+}
+
+.color-palette h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: #2e2e2e;
+  margin-bottom: 10px;
+}
+
+.color-palette p {
+  color: #5a5a5a;
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.color-box {
+  width: 180px;
+  height: 130px;
+  border-radius: 12px;
+  background-color: var(--color);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.color-box:hover {
+  transform: translateY(-6px);
+}
+
+.color-name {
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.color-name2 {
+  font-weight: 600;
+  color: black;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.color-hex {
+  font-size: 0.85rem;
+  color: #f0f0f0;
+  opacity: 0.9;
+}
+
+.color-hex2 {
+  font-size: 0.85rem;
+  color: black;
+  opacity: 0.9;
+}
   </style>
 </head>
 
@@ -277,8 +346,8 @@
     <!-- Language Flags -->
     <div class="language-selector">
       <img src="https://flagcdn.com/gb.svg" alt="English"    onclick="setLanguage('en')" title="English">
+	  <img src="https://flagcdn.com/ua.svg" alt="Українська" onclick="setLanguage('uk')" title="Українська">
       <img src="https://flagcdn.com/br.svg" alt="Português"  onclick="setLanguage('pt')" title="Português(BR)">
-      <img src="https://flagcdn.com/ua.svg" alt="Українська" onclick="setLanguage('uk')" title="Українська">
       <img src="https://flagcdn.com/cz.svg" alt="Čeština"    onclick="setLanguage('cz')" title="Čeština">
     </div>
   
@@ -292,26 +361,26 @@
 	
 <p class="details">
   <span class="date">July 17, 2027</span>
-  <span class="divider">•</span>
+  <span class="divider">|</span>
   <a href="https://maps.app.goo.gl/m3rYWviguJhZCWr36" target="_blank" class="location">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#8b5e3c" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;">
       <path d="M8 0a5.53 5.53 0 0 0-5.5 5.5c0 3.038 3.217 7.112 5.123 9.41a.5.5 0 0 0 .754 0C10.783 12.612 14 8.538 14 5.5A5.53 5.53 0 0 0 8 0Zm0 7.5A2 2 0 1 1 8 3.5a2 2 0 0 1 0 4Z"/>
     </svg>
     Mikulov, CZ
   </a>
-  <span class="divider">•</span>
+  <span class="divider">|</span>
   <span id="countdown">Loading countdown...</span>
 </p>
 
     <nav>
       <ul>
         <li><a href="#" id="nav-home" class="active">Home</a></li>
-        <li><a href="#" id="nav-story">              Our Story</a></li>
-        <li><a href="#" id="nav-travel">             Travel</a></li>
+        <li><a href="#" id="nav-story">              About us</a></li>
+        <li><a href="#" id="nav-travel">             For Guests</a></li>
         <li><a href="#" id="nav-todo">               Things to Do</a></li>
         <li><a href="#" id="nav-photos">             Photos</a></li>
-        <li><a href="#" id="nav-party">              Wedding Party</a></li>
-        <li><a href="#" id="nav-registry">           Registry</a></li>
+        <li><a href="#" id="nav-party">              Contact</a></li>
+        <li><a href="#" id="nav-registry">           Donations</a></li>
         <li><a href="#" id="nav-rsvp">               RSVP</a></li>
       </ul>
     </nav>
@@ -324,15 +393,45 @@
         <p id="text-home">Forever starts here.</p>
       </section>
 
+<!-- A tiny reminder why we are together -->
       <section id="section-story" class="section">
-        <p id="text-story"> Every love story is beautiful, but ours is my favorite you </br> We’ve been together for
+        <p id="text-story" data-i18n="text_story"> Every love story is beautiful, but ours is my favorite you </br> We’ve been together for
 		<span id="relationshipCountdown">Loading...</span> 
 	    </p>
       </section>
 
-
+<!-- Dress code colors inspired by wedding palette -->
       <section id="section-travel" class="section">
         <p id="text-travel">Join us for a romantic celebration in the heart of Mikulov.</p>
+	    <p>We kindly suggest attire inspired by our wedding colors and venue elegance.</p>
+		
+        <div class="colors">
+          <div class="color-box" style="--color:#F5E4DB;">
+            <span class="color-name2">Ivory Blush</span>
+            <span class="color-hex2">#F5E4DB</span>
+          </div>
+        
+          <div class="color-box" style="--color:#3E5541;">
+            <span class="color-name">Deep Olive Green</span>
+            <span class="color-hex">#3E5541</span>
+          </div>
+        
+          <div class="color-box" style="--color:#C8A58C;">
+            <span class="color-name">Warm Taupe</span>
+            <span class="color-hex">#C8A58C</span>
+          </div>
+        
+          <div class="color-box" style="--color:#8AA3B8;">
+            <span class="color-name">Dusty Blue</span>
+            <span class="color-hex">#8AA3B8</span>
+          </div>
+        
+          <div class="color-box" style="--color:#E9E4D8;">
+            <span class="color-name2">Soft Linen</span>
+            <span class="color-hex2">#E9E4D8</span>
+          </div>
+        </div>
+	  
       </section>
 
       <section id="section-todo" class="section">
@@ -370,22 +469,24 @@
 
     const translations = {
       en: {
-        home: "Home", story: "Our Story", travel: "Travel", todo: "Things to Do", photos: "Photos",
-        party: "Wedding Party", registry: "Registry", rsvp: "RSVP",
+        home: "Home", story: "About us", travel: "For Guests", todo: "Things to Do", photos: "Photos",
+        party: "Contact", registry: "Donations", rsvp: "RSVP",
         quote: "Forever starts here.",
         daysToGo: "DAYS TO GO!",
-        weddingDay: "It's Wedding Day! 💍"
+        weddingDay: "It's Wedding Day! 💍",
+		text_story: "Text."
       },
       pt: {
-        home: "Início", story: "Nossa História", travel: "Viagens", todo: "O Que Fazer", photos: "Fotos",
-        party: "Padrinhos", registry: "Lista de Presentes", rsvp: "Confirmação",
+        home: "Início", story: "Sobre o Casal", travel: "Convidados", todo: "O Que Fazer", photos: "Fotos",
+        party: "Contato", registry: "Doacoes", rsvp: "Confirmação",
         quote: "O para sempre começa aqui.",
         daysToGo: "Dias pro casamento!",
-        weddingDay: "É o grande dia! 💍"
+        weddingDay: "É o grande dia! 💍", 
+		text_story: "Text."
       },
       uk: {
-        home: "Головна", story: "Наша Історія", travel: "Подорож", todo: "Що Робити", photos: "Фото",
-        party: "Весільна Партія", registry: "Подарунки", rsvp: "Підтвердити",
+        home: "Головна", story: "Наша Історія", travel: "Для гостей", todo: "Чим зайнятися", photos: "Фото",
+        party: "Контакти", registry: "Донати", rsvp: "Ви з нами?",
         quote: "Назавжди починається тут.",
         daysToGo: "ДНІВ ДО ВЕСІЛЛЯ!",
         weddingDay: "Сьогодні весілля! 💍"
