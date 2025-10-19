@@ -9,67 +9,67 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon2.png">
 
-  <style>
-    :root {
-      --bg-color: #f2e9e4;
-      --text-color: #2b2b2b;
-      --accent-color: #8b5e3c;
-      --font-title: 'Playfair Display', serif;
-      --font-body: 'Lato', sans-serif;
-    }
+<style>
+:root {
+  --bg-color: #f2e9e4;
+  --text-color: #2b2b2b;
+  --accent-color: #8b5e3c;
+  --font-title: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      background-color: var(--bg-color);
-      font-family: var(--font-body);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
+body {
+  background-color: var(--bg-color);
+  font-family: var(--font-body);
+  color: var(--text-color);
+  line-height: 1.6;
+}
 
-    /* Language Selector */
-    .language-selector {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      display: flex;
-      gap: 10px;
-    }
+/* Language Selector */
+.language-selector {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+}
 
-    .language-selector img {
-      width: 28px;
-      height: 20px;
-      cursor: pointer;
-      border-radius: 3px;
-      transition: transform 0.2s;
-    }
+.language-selector img {
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: transform 0.2s;
+}
 
-    .language-selector img:hover {
-      transform: scale(1.1);
-    }
+.language-selector img:hover {
+  transform: scale(1.1);
+}
 
-    header {
-      text-align: center;
-      padding: 4rem 1rem 2rem;
-    }
+header {
+  text-align: center;
+  padding: 2rem 1rem 2rem;
+}
 
-    .logo {
-      font-family: var(--font-title);
-      font-size: 2rem;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-    }
+.logo {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
 
-    .names {
-      font-family: var(--font-title);
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-    }
+.names {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
 
 .details {
   display: flex;
@@ -81,7 +81,6 @@
   font-family: 'Lora', serif;
   letter-spacing: 0.5px;
   margin-top: 1rem;
-  text-transform: uppercase;
 }
 
 .details .divider {
@@ -108,47 +107,47 @@
   letter-spacing: 0.6px;
 }
 
-    nav {
-      margin-top: 1.5rem;
-    }
+nav {
+  margin-top: 1.5rem;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      font-size: 0.95rem;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
 
-    nav a {
-      text-decoration: none;
-      color: var(--text-color);
-      position: relative;
-      padding-bottom: 3px;
-      transition: color 0.3s ease;
-    }
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  position: relative;
+  padding-bottom: 1px;
+  transition: color 0.3s ease;
+}
 
-    nav a:hover, nav a.active {
-      color: var(--accent-color);
-    }
+nav a:hover, nav a.active {
+  color: var(--accent-color);
+}
 
-    nav a.active::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background-color: var(--accent-color);
-    }
+nav a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--accent-color);
+}
 
 .hero {
   position: relative;
   width: 90%;
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 3rem 2rem;
+  max-width: 1000px;
+  margin: auto auto;
+  padding: 1.5rem 1.5rem;
   border-radius: 15px;
   background: linear-gradient(to top, #f8f3ef, #f2e9e4);
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
@@ -162,7 +161,7 @@
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   color: var(--text-color);
   max-width: 700px;
   margin: 0 auto;
@@ -184,28 +183,27 @@
   animation: fadeInUp 0.6s ease forwards;
 }
 
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.9rem;
+  color: #777;
+ }
 
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
-	
-    .logo-with-castle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 1rem;
-    }
-    
-    .logo-text {
-      font-family: var(--font-title);
-      font-size: 2rem;
-      letter-spacing: 2px;
-      color: var(--text-color);
-    }
+ .logo-with-castle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+ }
+ 
+ .logo-text {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  letter-spacing: 2px;
+  color: var(--text-color);
+ }
     
 .castle-divider {
   display: flex;
@@ -295,11 +293,12 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  margin-top:30px;
 }
 
 .color-box {
-  width: 180px;
-  height: 130px;
+  width: 170px;
+  height: 120px;
   border-radius: 12px;
   background-color: var(--color);
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -309,21 +308,18 @@
   align-items: center;
   padding: 10px;
   transition: transform 0.3s ease;
+  cursor: pointer;
+  text-align:center;
 }
 
 .color-box:hover {
-  transform: translateY(-6px);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .color-name {
   font-weight: 600;
   color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-.color-name2 {
-  font-weight: 600;
-  color: black;
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
@@ -333,11 +329,160 @@
   opacity: 0.9;
 }
 
-.color-hex2 {
-  font-size: 0.85rem;
-  color: black;
-  opacity: 0.9;
+.color-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(40, 40, 40, 0.45);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
 }
+
+.color-modal-content {
+  background: #f8f3ef;
+  padding: 25px 35px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  animation: fadeInModal 0.25s ease-in-out;
+  font-family: var(--font-body);
+}
+
+.modal-color {
+  width: 160px;
+  height: 120px;
+  border-radius: 12px;
+  margin: 0 auto 15px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#modalText {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  color: var(--text-color);
+  letter-spacing: 0.5px;
+}
+
+.close {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  color: #8b5e3c;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #2b2b2b;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+form {
+  max-width: 500px;
+  margin: 1rem auto;
+  background: #f8f3ef;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 0.3rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-family: var(--font-title);
+  color: #6b4b32;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #d8cfc7;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #2b2b2b;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #8b5e3c;
+}
+
+.rsvp-btn {
+  background-color: #8b5e3c;
+  color: #fff;
+  border: none;
+  padding: 0.8rem .4rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 1rem auto 0;
+}
+
+.rsvp-btn:hover {
+  background-color: #a67855;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #2b2b2b;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  accent-color: #8b5e3c; /* matches your accent color */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="radio"] {
+  accent-color: #8b5e3c;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem;
+  margin-bottom: .1rem;
+}
+
+.checkbox-group label {
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.field-error { color: #b14; font-size: .9rem; margin-top: .2rem; }
+
   </style>
 </head>
 
@@ -345,33 +490,32 @@
   <header>
     <!-- Language Flags -->
     <div class="language-selector">
-      <img src="https://flagcdn.com/gb.svg" alt="English"    onclick="setLanguage('en')" title="English">
-	  <img src="https://flagcdn.com/ua.svg" alt="Українська" onclick="setLanguage('uk')" title="Українська">
-      <img src="https://flagcdn.com/br.svg" alt="Português"  onclick="setLanguage('pt')" title="Português(BR)">
-      <img src="https://flagcdn.com/cz.svg" alt="Čeština"    onclick="setLanguage('cz')" title="Čeština">
+      <img src = "https://flagcdn.com/gb.svg" alt = "English"    onclick = "setLanguage('en')" title = "English">
+	  <img src = "https://flagcdn.com/ua.svg" alt = "Українська" onclick = "setLanguage('uk')" title = "Українська">
+      <img src = "https://flagcdn.com/br.svg" alt = "Português"  onclick = "setLanguage('pt')" title = "Português(BR)">
+      <img src = "https://flagcdn.com/cz.svg" alt = "Čeština"    onclick = "setLanguage('cz')" title = "Čeština">
     </div>
-  
+
     <div class="logo"> A | L </div>
-    
+
     <div class="castle-divider">
       <img src="castel.png" alt="Mikulov Castle silhouette" class="castle-image">
     </div>
 	
-    <h1 class="names"> ANA & LUCAS</h1>
-	
+    <h1 class="names"> ANA & LUCAS </h1>
+
 <p class="details">
-  <span class="date">July 17, 2027</span>
+  <span class="date" id="theDay">July 17, 2027</span>
   <span class="divider">|</span>
-  <a href="https://maps.app.goo.gl/m3rYWviguJhZCWr36" target="_blank" class="location">
+  <a href="https://maps.app.goo.gl/m3rYWviguJhZCWr36" target="_blank" class="location" style="text-transform: uppercase;">
     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="#8b5e3c" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 5px;">
       <path d="M8 0a5.53 5.53 0 0 0-5.5 5.5c0 3.038 3.217 7.112 5.123 9.41a.5.5 0 0 0 .754 0C10.783 12.612 14 8.538 14 5.5A5.53 5.53 0 0 0 8 0Zm0 7.5A2 2 0 1 1 8 3.5a2 2 0 0 1 0 4Z"/>
     </svg>
-    Mikulov, CZ
+  Mikulov, Czechia
   </a>
   <span class="divider">|</span>
   <span id="countdown">Loading countdown...</span>
 </p>
-
     <nav>
       <ul>
         <li><a href="#" id="nav-home" class="active">Home</a></li>
@@ -390,165 +534,333 @@
   <div class="hero-content" id="hero-content">
     <main id="main-content">
       <section id="section-home" class="section active">
-        <p id="text-home">Forever starts here.</p>
+        <p id="text-home"> </p>
       </section>
 
 <!-- A tiny reminder why we are together -->
       <section id="section-story" class="section">
-        <p id="text-story" data-i18n="text_story"> Every love story is beautiful, but ours is my favorite you </br> We’ve been together for
+        <p id="text-story" data-i18n="text_story">
 		<span id="relationshipCountdown">Loading...</span> 
 	    </p>
       </section>
 
 <!-- Dress code colors inspired by wedding palette -->
       <section id="section-travel" class="section">
-        <p id="text-travel">Join us for a romantic celebration in the heart of Mikulov.</p>
-	    <p>We kindly suggest attire inspired by our wedding colors and venue elegance.</p>
-		
+        <p id="text-travel"></p>
+
         <div class="colors">
-          <div class="color-box" style="--color:#F5E4DB;">
-            <span class="color-name2">Ivory Blush</span>
-            <span class="color-hex2">#F5E4DB</span>
+          <div class="color-box" style="--color:#8B4A4A;">
+            <span class="color-name" id="color1"></span>
+            <span class="color-hex">#8B4A4A</span>
           </div>
-        
+
           <div class="color-box" style="--color:#3E5541;">
-            <span class="color-name">Deep Olive Green</span>
+            <span class="color-name" id="color2"></span>
             <span class="color-hex">#3E5541</span>
           </div>
-        
+
           <div class="color-box" style="--color:#C8A58C;">
-            <span class="color-name">Warm Taupe</span>
+            <span class="color-name" id="color3"></span>
             <span class="color-hex">#C8A58C</span>
           </div>
-        
-          <div class="color-box" style="--color:#8AA3B8;">
-            <span class="color-name">Dusty Blue</span>
-            <span class="color-hex">#8AA3B8</span>
+
+          <div class="color-box" style="--color:#BDCFDE;">
+            <span class="color-name" id="color4"></span>
+            <span class="color-hex">#BDCFDE</span>
           </div>
-        
-          <div class="color-box" style="--color:#E9E4D8;">
-            <span class="color-name2">Soft Linen</span>
-            <span class="color-hex2">#E9E4D8</span>
+
+          <div class="color-box" style="--color:#D8A8A0;">
+            <span class="color-name" id="color5"></span>
+            <span class="color-hex">#D8A8A0</span>
           </div>
+		  
+		  <!-- Color Modal (for expanding color boxes) -->
+         <div id="colorModal" class="color-modal">
+           <div class="color-modal-content">
+             <span class="close">&times;</span>
+             <div id="modalColor" class="modal-color"></div>
+             <p id="modalText"></p>
+           </div>
+         </div>
         </div>
-	  
-      </section>
+	  </section>
 
       <section id="section-todo" class="section">
-        <p id="text-todo">Explore the vineyards, history, and beauty of South Moravia.</p>
+        <p id="text-todo"> </p>
       </section>
 
       <section id="section-photos" class="section">
-        <p id="text-photos">Snapshots of our memories and moments together.</p>
+        <p id="text-photos"> </p>
       </section>
 
       <section id="section-party" class="section">
-        <p id="text-party">Meet our beloved friends and family who stand with us.</p>
+        <p id="text-party"> </p>
       </section>
 
       <section id="section-registry" class="section">
-        <p id="text-registry">Your presence is the greatest gift, but here’s a little list.</p>
+        <p id="text-registry"> </p>
       </section>
 
       <section id="section-rsvp" class="section">
-        <p id="text-rsvp">We can’t wait to celebrate with you. Please let us know!</p>
+        <p id="text-rsvp"> </p>
+		
+        <!-- form -->
+        <form id="rsvp-form" action="https://formspree.io/f/mjkaledz" method="POST" novalidate>
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required placeholder="Your full name" />
+            <div class="field-error" id="err-name" aria-live="polite"></div>
+          </div>
+        
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="_replyto" required placeholder="you@example.com" />
+            <div class="field-error" id="err-email" aria-live="polite"></div>
+          </div>
+        
+          <!-- Attendance -->
+          <div class="form-group">
+            <label id="rsvp_attend_label"></label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="attendance" value="Yes, with pleasure!" />
+                Yes, with pleasure!
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="attendance" value="Sorry, I can’t make it." />
+                Sorry, I can’t make it.
+              </label>
+            </div>
+            <div class="field-error" id="err-attendance" aria-live="polite"></div>
+          </div>
+        
+          <!-- Sleep in Mikulov -->
+          <div class="form-group">
+            <label>Will you sleep in Mikulov? *</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="sleepo" value="Yes, I will." />
+                Yes, I will.
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="sleepo" value="No, I'll not." />
+                No, I'll not.
+              </label>
+            </div>
+            <div class="field-error" id="err-sleepo" aria-live="polite"></div>
+          </div>
+        
+          <!-- Message -->
+          <div class="form-group">
+            <label for="message">Message (optional)</br/>How many are coming with you? </br/>Any food restriction/allergies?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Any notes for us?"></textarea>
+          </div>
+        
+          <!-- Submit -->
+          <button type="submit" class="rsvp-btn">Send RSVP</button>
+        </form>
+        <p id="form-status"></p>
       </section>
     </main>
   </div>
 </section>
 
-
   <footer class="footer-castle">
     <p>© 2025 Ana & Lucas. All Rights Reserved.</p>
 </footer>
   
-  <!-- Countdown & Translation Script -->
-  <script>
-    const weddingDate = new Date("July 17, 2027 17:00:00").getTime();
-    const countdownElement = document.getElementById("countdown");
+<!-- Countdown & Translation Script -->
+<script>
+/* ---------- locale map (for formatted date if you use it later) ---------- */
+const langMap = {
+  en: "en-US",
+  pt: "pt-BR",
+  cz: "cs-CZ",
+  uk: "uk-UA"
+};
 
-    const translations = {
-      en: {
-        home: "Home", story: "About us", travel: "For Guests", todo: "Things to Do", photos: "Photos",
-        party: "Contact", registry: "Donations", rsvp: "RSVP",
-        quote: "Forever starts here.",
-        daysToGo: "DAYS TO GO!",
-        weddingDay: "It's Wedding Day! 💍",
-		text_story: "Text."
-      },
-      pt: {
-        home: "Início", story: "Sobre o Casal", travel: "Convidados", todo: "O Que Fazer", photos: "Fotos",
-        party: "Contato", registry: "Doacoes", rsvp: "Confirmação",
-        quote: "O para sempre começa aqui.",
-        daysToGo: "Dias pro casamento!",
-        weddingDay: "É o grande dia! 💍", 
-		text_story: "Text."
-      },
-      uk: {
-        home: "Головна", story: "Наша Історія", travel: "Для гостей", todo: "Чим зайнятися", photos: "Фото",
-        party: "Контакти", registry: "Донати", rsvp: "Ви з нами?",
-        quote: "Назавжди починається тут.",
-        daysToGo: "ДНІВ ДО ВЕСІЛЛЯ!",
-        weddingDay: "Сьогодні весілля! 💍"
-      },
-      cz: {
-        home: "Domů", story: "Náš Příběh", travel: "Cestování", todo: "Co Dělat", photos: "Fotky",
-        party: "Svatební Hosté", registry: "Dary", rsvp: "Potvrdit Účast",
-        quote: "Navždy začíná tady.",
-        daysToGo: "DNÍ DO SVATBY!",
-        weddingDay: "Je svatební den! 💍"
-      }
-	  
-    };
-	
-    let currentLang = "en";
+/* ---------- wedding countdown ---------- */
+const weddingDate      = new Date("July 17, 2027 17:00:00").getTime();
+const countdownElement = document.getElementById("countdown");
+ 
+ const translations = {
+ en: { home:              "Home",   story: "About us", travel:   "For Guests", todo: "Things to Do", 
+       photos:            "Photos", party: "Contact" , registry: "Donations" , rsvp: "RSVP",
+       quote:             "Welcome to our wedding website!</br></br>We’re beyond grateful that you’ll be celebrating this special chapter with us. Mikulov holds a special place in our hearts, and we can’t wait to experience its magic together with our favorite people.</br></br>Take a look around to find everything you need — from travel tips to our color inspiration — and get ready for a weekend full of joy, good wine, and beautiful moments. Don't forget to confirm your presence!",
+	   daysToGo:          "Days to go!",
+	   theDay:            "17th of July - 2027",
+       weddingDay:        "It's Wedding Day! 💍",
+       text_story:        "Every love story is beautiful, but ours is my favorite. 💞 <br>We’ve been together for ",
+       text_travel:       "Join us for a romantic celebration in the heart of Mikulov.<br>We kindly suggest attire inspired by our wedding colors and venue elegance.",
+       text_todo:         "Explore the vineyards, history, and beauty of South Moravia.",
+       text_photos:       "Snapshots of our memories and moments together.",
+       text_party:        "Meet our beloved friends and family who stand with us.",
+       text_registry:     "Your presence is the greatest gift, but here’s a little list.",
+       text_rsvp:         "We can’t wait to celebrate with you. Please let us know!",
+	   relationshipSince: "{years} years, {months} months and {days} days ❤️",
+	   color1:            "Cordovan", color2: "Muted Green", color3: "Khaki", color4: "Light Periwinkle", color5: "Pastel Pink",
+	   rsvp_attend_label: "Will you attend? *", rsvp_yes: "Yes, with pleasure!", rsvp_no: "Sorry, I can’t make it."
+	   
+     },
+ pt: { home:              "Início",  story: "Sobre o Casal", travel:   "Convidados", todo: "O Que Fazer", 
+       photos:            "Fotos",   party: "Contato"      , registry: "Doacoes"   , rsvp: "Confirmação",
+       quote:             "Bem-vindo a nossa página! Estamos muito ansiosos para celebrar este dia especial com você(s).</br>A cidade de Mikulov ocupa um lugar especial em nossos corações, estamos preparando tudinho para vocês vivenciarem este maravilhoso evento.</br>Dê uma olhadinha para encontrar tudo o que você precisa: desde dicas de viagem e até a indicação de cores - e prepare-se para um fim de semana cheio de alegria, bons vinhos e muito mais. Não se esqueça de confirmar sua presença.",
+       daysToGo:          "Dias pro casamento!",
+	   theDay:            "17 de Julho - 2027",
+       weddingDay:        "É o grande dia! 💍", 
+       text_story:        "Toda história de amor é linda, mas a nossa é a minha favorita. 💞  <br>Estamos juntos há ",
+       text_travel:       "Junte-se a nós para uma celebração romântica no coração de Mikulov.<br>Sugerimos trajes inspirados nas cores e elegância do nosso casamento.",
+       text_todo:         "Explore os vinhedos, a história e a beleza da Morávia do Sul.",
+       text_photos:       "Momentos e lembranças que guardamos com carinho.",
+       text_party:        "Conheça nossos queridos amigos e familiares que estão conosco.",
+       text_registry:     "Sua presença é o maior presente, mas aqui vai uma pequena lista.",
+       text_rsvp:         "Mal podemos esperar para celebrar com você. Por favor, confirme sua presença!",
+	   relationshipSince: "{years} anos, {months} meses e {days} dias ❤️",
+	   color1:            "Bordô", color2: "Verde Suave", color3: "Cáqui", color4: "Azul Lavanda", color5: "Rosa Pastel",
+	   rsvp_attend_label: "Você irá comparecer? *", rsvp_yes: "Sim, com prazer!", rsvp_no: "Desculpe, não poderei ir."
+	   
+     },
+ uk: { home:              "Головна", story: "Наша Історія", travel:   "Для гостей", todo: "Чим зайнятися",
+       photos:            "Фото",    party: "Контакти"    , registry: "Донати"    , rsvp: "Ви з нами?",
+       quote:             "Назавжди починається тут.",
+       daysToGo:          "Днів до Весілля!",
+       weddingDay:        "Сьогодні весілля! 💍",
+	   theDay:            "17 липня - 2027",
+       text_story:        "Кожна історія кохання прекрасна, але наша — моя улюблена. 💞   <br>Ми разом вже ",
+       text_travel:       "Приєднуйтесь до нас на романтичне святкування у серці Мікулова.<br>Ми радимо вбрання у відтінках наших весільних кольорів.",
+       text_todo:         "Досліджуйте виноградники, історію та красу Південної Моравії.",
+       text_photos:       "Світлини наших спогадів і моментів разом.",
+       text_party:        "Познайомтеся з нашими улюбленими друзями та родиною.",
+       text_registry:     "Ваша присутність — найкращий подарунок, але ось невеликий список.",
+       text_rsvp:         "Ми не можемо дочекатися святкування разом із вами! Повідомте нам!",
+	   relationshipSince: "{years} років, {months} місяців і {days} днів ❤️",
+	   color1:            "Бордо", color2: "Приглушений Зелений", color3: "Хакі", color4: "Світло-бузковий", color5: "Пастельно-рожевий",
+	   rsvp_attend_label: "Ви будете присутні? *", rsvp_yes: "Так, із задоволенням!", rsvp_no: "Вибачте, я не зможу прийти."
+	   
+     },
+ cz: { home:              "Domů",  story: "Náš Příběh"    , travel:   "Cestování", todo: "Co Dělat",
+       photos:            "Fotky", party: "Svatební Hosté", registry: "Dary"     , rsvp: "Potvrdit Účast",
+       quote:             "Navždy začíná tady.",
+       daysToGo:          "Dní do Svatby!",
+       weddingDay:        "Je svatební den! 💍",
+	   theDay:            "17. července - 2027",
+       text_story:        "Každý milostný příběh je krásný, ale ten náš je můj oblíbený. 💞 <br>Jsme spolu už ",
+       text_travel:       "Připojte se k nám k romantické oslavě v srdci Mikulova.          <br>Doporučujeme oblečení inspirované našimi svatebními barvami a elegancí místa.",
+       text_todo:         "Prozkoumejte vinice, historii a krásu jižní Moravy.",
+       text_photos:       "Okamžiky a vzpomínky, které sdílíme spolu.",
+       text_party:        "Seznamte se s našimi milovanými přáteli a rodinou, kteří jsou s námi.",
+       text_registry:     "Vaše přítomnost je ten největší dar, ale zde je malý seznam.",
+       text_rsvp:         "Nemůžeme se dočkat oslavy s vámi! Prosíme o potvrzení účasti.",
+	   relationshipSince: "{years} let, {months} měsíců a {days} dní ❤️",
+	   color1:            "Bordó", color2: "Tlumená zelená", color3: "Khaki", color4: "Světle modrofialová", color5: "Pastelově růžová",
+	   rsvp_attend_label: "Zúčastníte se? *", rsvp_yes: "Ano, s potěšením!",  rsvp_no: "Omlouvám se, nemohu přijít."
+	   
+     }
+};
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
+ let currentLang = "en";
 
-      if (distance < 0) {
-        countdownElement.innerHTML = translations[currentLang]["weddingDay"];
-        return;
-      }
+ function updateCountdown() {
+   const now = new Date().getTime();
+   const distance = weddingDate - now;
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      countdownElement.innerHTML = `${days} ${translations[currentLang]["daysToGo"]}`;
-    }
-    // Update countdown every second
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+   if (distance < 0) {
+     countdownElement.innerHTML = translations[currentLang]["weddingDay"];
+     return;
+   }
 
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.getElementById("nav-home").textContent     = translations[lang]["home"];
-      document.getElementById("nav-story").textContent    = translations[lang]["story"];
-      document.getElementById("nav-travel").textContent   = translations[lang]["travel"];
-      document.getElementById("nav-todo").textContent     = translations[lang]["todo"];
-      document.getElementById("nav-photos").textContent   = translations[lang]["photos"];
-      document.getElementById("nav-party").textContent    = translations[lang]["party"];
-      document.getElementById("nav-registry").textContent = translations[lang]["registry"];
-      document.getElementById("nav-rsvp").textContent     = translations[lang]["rsvp"];
-      updateCountdown();
-    }
-	
-// Relationship duration countdown — since May 16, 2023 10:00
-function updateRelationshipCountdown() {
-  const startDate = new Date("May 16, 2023 10:00:00").getTime();
-  const now = new Date().getTime();
-  const diff = now - startDate;
+   const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+   countdownElement.innerHTML = `${days} ${translations[currentLang]["daysToGo"]}`;
+ }
+ // Update countdown every second
+ setInterval(updateCountdown, 1000);
+ updateCountdown();
+ 
+/* ---------- relationship counter (localized) ---------- */
+function calcRelationshipParts() {
+  const start = new Date("May 16, 2023 10:00:00").getTime();
+  const now = Date.now();
+  let diffDays = Math.floor((now - start) / (1000 * 60 * 60 * 24)); // total days
 
-  const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-  const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30.44));
-  const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+  // compute years, months, days in a readable approximate way
+  const years = Math.floor(diffDays / 365);
+  diffDays -= years * 365;
+  const months = Math.floor(diffDays / 30);
+  const days = diffDays - months * 30;
 
-  document.getElementById("relationshipCountdown").textContent =
-    `${years} years, ${months} months and ${days} days ❤️`;
+  return { years, months, days };
 }
 
-setInterval(updateRelationshipCountdown, 1000 * 60 * 60 * 12); // update twice per day
-updateRelationshipCountdown();
-	
+function updateRelationshipCountdown() {
+  // ensure element exists
+  const el = document.getElementById("relationshipCountdown");
+  if (!el) return;
+
+  const parts = calcRelationshipParts();
+  const tpl = translations[currentLang]?.relationshipSince || "{years}y {months}m {days}d";
+  const filled = tpl
+    .replace("{years}", parts.years)
+    .replace("{months}", parts.months)
+    .replace("{days}", parts.days);
+
+  // set text (no HTML in template so safe to use textContent)
+  el.textContent = filled;
+}
+
+/* update every 12 hours (fine-grained updates not needed for years/months/days) */
+setInterval(updateRelationshipCountdown, 1000 * 60 * 60 * 12);
+updateRelationshipCountdown(); // initial
+
+function setLanguage(lang) {
+ currentLang = lang;
+ document.getElementById("nav-home").textContent     = translations[lang]["home"];
+ document.getElementById("nav-story").textContent    = translations[lang]["story"];
+ document.getElementById("nav-travel").textContent   = translations[lang]["travel"];
+ document.getElementById("nav-todo").textContent     = translations[lang]["todo"];
+ document.getElementById("nav-photos").textContent   = translations[lang]["photos"];
+ document.getElementById("nav-party").textContent    = translations[lang]["party"];
+ document.getElementById("nav-registry").textContent = translations[lang]["registry"];
+ document.getElementById("nav-rsvp").textContent     = translations[lang]["rsvp"];
+ // Update main sections
+ document.getElementById("text-home").innerHTML      = translations[lang]["quote"];
+ // story: keep relationship span in place (we append countdown span if missing)
+ const storyBase = translations[lang]["text_story"];
+ // ensure span exists
+ if (!document.getElementById("relationshipCountdown")) {
+ // replace whole story content with base + span
+ document.getElementById("text-story").innerHTML = storyBase + '<span id="relationshipCountdown">...</span>';
+ } else {
+ // put base text (with trailing space if any), keep span element
+ document.getElementById("text-story").innerHTML = storyBase + '<span id="relationshipCountdown">' + document.getElementById("relationshipCountdown").textContent + '</span>';
+ }
+ document.getElementById("text-travel").innerHTML        = translations[lang]["text_travel"];
+ document.getElementById("text-todo").innerHTML          = translations[lang]["text_todo"];
+ document.getElementById("text-photos").innerHTML        = translations[lang]["text_photos"];
+ document.getElementById("text-party").innerHTML         = translations[lang]["text_party"];
+ document.getElementById("text-registry").innerHTML      = translations[lang]["text_registry"];
+ document.getElementById("text-rsvp").innerHTML          = translations[lang]["text_rsvp"];
+ document.getElementById("theDay").innerHTML             = translations[lang]["theDay"];
+ document.getElementById("color1").innerHTML             = translations[lang]["color1"];
+ document.getElementById("color2").innerHTML             = translations[lang]["color2"];
+ document.getElementById("color3").innerHTML             = translations[lang]["color3"];
+ document.getElementById("color4").innerHTML             = translations[lang]["color4"];
+ document.getElementById("color5").innerHTML             = translations[lang]["color5"];
+ document.getElementById("rsvp_attend_label").innerHTML  = translations[lang]["rsvp_attend_label"];
+
+ updateRelationshipCountdown();
+ // update wedding/date display if you have weddingDate span id (optional)
+ // if you added <span id="weddingDate"> in markup, this will localize it:
+ const weddingDateSpan = document.getElementById("weddingDate");
+ if (weddingDateSpan) {
+   const weddingDt = new Date("2027-07-17T00:00:00");
+   weddingDateSpan.textContent = weddingDt.toLocaleDateString(langMap[lang], { year: "numeric", month: "long", day: "numeric" });
+  }
+ // refresh main countdown label text (if needed)
+ updateCountdown();
+ }
+
 // Section switching (no background image)
 const hero = document.getElementById("hero");
 const heroContent = document.getElementById("hero-content");
@@ -564,6 +876,121 @@ document.querySelectorAll("nav a").forEach(link => {
     document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
     document.getElementById(`section-${section}`).classList.add("active");
 
+  });
+});
+
+/* ---------- wire flag icons already inline (they call setLanguage). If you want default language from browser: ---------- */
+(function init() {
+  // optionally set initial language from browser
+  // const browserLang = navigator.language || navigator.userLanguage;
+  // if (browserLang.startsWith("pt")) setLanguage("pt");
+  // else if (browserLang.startsWith("uk") || browserLang.startsWith("uk-")) setLanguage("uk");
+  // else if (browserLang.startsWith("cs")) setLanguage("cz");
+  // else setLanguage("en");
+
+  setLanguage(currentLang); // ensure page text is consistent on load
+})
+();
+
+// ----- Expandable Color Box Modal -----
+const colorModal = document.getElementById("colorModal");
+const modalColor = document.getElementById("modalColor");
+const modalText  = document.getElementById("modalText");
+const closeModal = document.querySelector(".close");
+
+document.querySelectorAll(".color-box").forEach(box => {
+  box.addEventListener("click", () => {
+    const color = getComputedStyle(box).getPropertyValue("--color").trim();
+    const name  = box.querySelector(".color-name, .color-name2")?.textContent || "";
+    modalColor.style.backgroundColor = color;
+    modalText.textContent = `${name} (${color})`;
+    colorModal.style.display = "flex";
+  });
+});
+
+closeModal.onclick = () => colorModal.style.display = "none";
+window.onclick = e => { if (e.target === colorModal) colorModal.style.display = "none"; };
+
+//--Form data validation
+  document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("rsvp-form");
+
+  const errName = document.getElementById("err-name");
+  const errEmail = document.getElementById("err-email");
+  const errAttendance = document.getElementById("err-attendance");
+  const errSleepo = document.getElementById("err-sleepo");
+  const statusMsg = document.getElementById("form-status");
+
+  function clearErrors() {
+    [errName, errEmail, errAttendance, errSleepo].forEach(e => e.textContent = "");
+    statusMsg.textContent = "";
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    clearErrors();
+
+    const name       = form.name.value.trim();
+    const email      = form._replyto.value.trim();
+    const attendance = form.querySelectorAll("input[name='attendance']:checked");
+    const sleepo     = form.querySelectorAll("input[name='sleepo']:checked");
+
+    // ✅ Name validation
+    const nameRegex = /^[A-Za-zÀ-ž]+(?:\s[A-Za-zÀ-ž'-]+)+$/; // at least 2 words
+    const repetitive = /(.)\1{3,}/; // repeated chars
+    if (!name) {
+      errName.textContent = "Please enter your name.";
+      return;
+    } else if (!nameRegex.test(name)) {
+      errName.textContent = "Please enter a valid full name (letters only, include surname).";
+      return;
+    } else if (repetitive.test(name)) {
+      errName.textContent = "Name looks too repetitive.";
+      return;
+    }
+
+    // ✅ Email validation
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!email) {
+      errEmail.textContent = "Please enter your email.";
+      return;
+    } else if (!emailRegex.test(email)) {
+      errEmail.textContent = "Please enter a valid email address.";
+      return;
+    }
+
+    // ✅ Attendance
+    if (attendance.length === 0) {
+      errAttendance.textContent = "Please select your attendance option.";
+      return;
+    }
+
+    // ✅ Sleep
+    if (sleepo.length === 0) {
+      errSleepo.textContent = "Please tell us if you'll stay in Mikulov.";
+      return;
+    }
+
+    // ✅ All good → send
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        statusMsg.style.color = "green";
+        statusMsg.textContent = "🎉 Thank you! Your RSVP has been sent successfully.";
+        form.reset();
+      } else {
+        statusMsg.style.color = "red";
+        statusMsg.textContent = "There was an error. Please try again later.";
+      }
+    } catch (err) {
+      statusMsg.style.color = "red";
+      statusMsg.textContent = "Network error. Please check your connection.";
+    }
   });
 });
 
