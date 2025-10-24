@@ -139,16 +139,14 @@
       justify-content: center;  /* center the pair as a group */
       align-items: start;
       gap: 24px;
-	  margin-top:8px;
     }
 
 	.photos{ font-family: Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans',
              'Liberation Sans', sans-serif; background:var(--bg); margin:0; padding:24px; color:#2b2b2b; --accent:#8b5e3c; --accent-dark:#70452c; --bg:#f8f3ef; }
 	
     .upload-wrap{
-	  display:inline-flex;
       width:100%;
-      max-width:400px;
+      max-width:340px;
       display:flex;
       flex-direction:column;
       align-items:center;      /* center the button / card */
@@ -191,10 +189,9 @@
    
     #upload-status > * { white-space: pre-line; }
 	#upload-status li  { white-space: pre-line; }
-    #upload-status{ font-size:.95rem; color:#222; text-align:center; }
+    #upload-status{ font-size:.95rem; color:#222; }
     #upload-status.ok{ color:#137333; }   /* green when done */
     #upload-status.err{ color:#b22222; }  /* red on error */
-	
 	#section-photos .up-help{ text-align:center; width:100%; font-size:16px;}
 	#section-photos .card{ width:100%; }
     #section-photos .wrap{ margin:0; }
@@ -359,7 +356,7 @@
 		 <p id="text-photos"></p>
 		  
 		 <div class="upload-cta">
-		 <!-- First button (Cloudinary) -->
+		 <!-- First button -->
 		 <div class="upload-wrap">
          <span id="uhelp" class="up-help"></span>
 		 <!-- the “button” -->
@@ -379,7 +376,7 @@
 
         <!-- Second button -->
 		<div class="upload-wrap">
-		 <span id="uhelp2" class="up-help"></span>
+		 <span id="uhelp" class="up-help"></span>
 		 <div class="card" style="margin-inline:auto;">
 		 <!-- 2) Uploader configuration (context) -->
 		 <uc-config ctx-name="my-uploader" pubkey="8dcd5158107962c7f0e3" source-list="local, camera, gdrive, facebook" 
@@ -457,11 +454,11 @@
 
             <!-- Message -->
             <div class="form-group">
-              <label for="msgtext" > 
+              <label for="msgadd" > 
 				<span id="msgadd"> </span></br>
 				<span style="font-size:16px;" id="msgadd2"> </span>
 		      </label>
-              <textarea id="msgtext" name="message" rows="4" placeholder=""></textarea>
+              <textarea id="msgadd" name="message" rows="4" placeholder=""></textarea>
             </div>
 
             <!-- Submit -->
@@ -523,7 +520,6 @@
         network:"Network error. Please check your connection.",
 		ubtn: "Upload files",
         uhelp: "Upload your video / photo here.",
-        uhelp2: "Upload your video / photo here.",
         uploading: "Uploading…",
         done: "Upload complete ✅",
         none: "No files uploaded.",
@@ -731,12 +727,8 @@
       document.getElementById("rsvp_n_s").textContent          = translations[lang]["rsvp_n_s"];
       document.getElementById("emailpc").placeholder           = translations[lang]["email_placeholder"];
       document.getElementById("namepc").placeholder            = translations[lang]["name_placeholder"];
-      //document.getElementById("msgadd").firstChild && (document.getElementById("msgadd").firstChild.nodeValue = translations[lang]["msgadd"] + "</br>");
-      //document.getElementById("msgadd2").textContent           = translations[lang]["msgadd2"];
-	  const msgLabelEl = document.getElementById("msgadd");
-      if (msgLabelEl) msgLabelEl.textContent = translations[lang]["msgadd"] || "";
-      document.getElementById("msgadd2").textContent = translations[lang]["msgadd2"] || "";
-	  
+      document.getElementById("msgadd").firstChild && (document.getElementById("msgadd").firstChild.nodeValue = translations[lang]["msgadd"] + "</br>");
+      document.getElementById("msgadd2").textContent           = translations[lang]["msgadd2"];
       document.getElementById("submitBtn").textContent         = translations[lang]["submit_btn"];
       // Also translate the VALUES that get submitted
       document.getElementById("attend_yes").value = translations[lang]["rsvp_yes"];
@@ -744,9 +736,8 @@
       document.getElementById("sleep_yes").value  = translations[lang]["rsvp_y_s"];
       document.getElementById("sleep_no").value   = translations[lang]["rsvp_n_s"]; 
       document.getElementById("ubtn").value       = translations[lang]["ubtn"]; 
-      document.getElementById("uhelp").value      = translations[lang]["uhelp"];
-      document.getElementById("uhelp2").value     = translations[lang]["uhelp2"];
-	  
+      document.getElementById("uhelp").value      = translations[lang]["uhelp"]; 
+
       updateRelationshipCountdown();
       updateCountdown();
 	  syncRsvpUiToLanguage(lang);
@@ -941,7 +932,6 @@ UC.defineComponents(UC);
   const input   = document.getElementById('guestMedia');
   const status  = document.getElementById('upload-status');
   const helpEl  = document.getElementById('uhelp');
-  const helpEl2 = document.getElementById('uhelp2');
   const btnLbl  = document.getElementById('ubtn');
 
   const humanSize = b => (b/1024/1024).toFixed(1) + ' MB';
@@ -951,9 +941,8 @@ UC.defineComponents(UC);
 
   function syncUploadUi() {
     const t = T();
-    if (btnLbl) btnLbl.textContent = t.ubtn     || 'Upload files';
-    if (helpEl) helpEl.textContent = t.uhelp    || 'Upload your video / photo here.';
-    if (helpEl2) helpEl2.textContent = t.uhelp2 || 'Upload your video / photo here.';
+    if (btnLbl) btnLbl.textContent = t.ubtn || 'Upload files';
+    if (helpEl) helpEl.textContent = t.uhelp || 'Upload your video / photo here.';
   }
   syncUploadUi();
 
