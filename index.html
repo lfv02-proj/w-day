@@ -973,5 +973,178 @@ function validateRsvpForm(){
   })();
   </script>
 
+  <script>
+    // ---- Upload (Cloudinary) with full i18n for messages ----
+    (() => {
+      const CLOUD_NAME    = 'dx6q3zyyh';
+      const UPLOAD_PRESET = 'wedding_guest_uploads'; // UNSIGNED preset in Cloudinary
+      const FOLDER        = 'wedding_guests';        // optional
+
+      const input   = document.getElementById('guestMedia');
+      const status  = document.getElementById('upload-status');
+      const helpEls = document.querySelectorAll('.up-help'); // all help labels in Photos section
+      const btnLbl  = document.getElementById('upload-btn-label');
+
+      const MAX_IMAGE = 10 * 1024 * 1024;   // 10 MB
+      const MAX_VIDEO = 100 * 1024 * 1024;  // 100 MB
+      const humanSize = b => (b/1024/1024).toFixed(1) + ' MB';
+
+      // Helper to get current dictionary safely
+      const T = () => (window.translations?.[window.currentLang]) || window.translations?.en || {};
+
+      // Keep Photos UI in sync with language
+      function syncPhotosTexts(){
+        const t = T();
+        if (btnLbl) btnLbl.textContent = t.btn || 'Upload files';
+        helpEls.forEach(el => { el.textContent = t.help || 'Upload your video / photo here.'; });
+      }
+      // Run once now
+      syncPhotosTexts();
+
+      // Patch setLanguage ONCE to also refresh Photos texts
+      if (typeof window.setLanguage === 'function' && !window.__photosLangHooked){
+        const __orig = window.setLanguage;
+        window.setLanguage = function(lang){
+          __orig(lang);
+          syncPhotosTexts(); // <— ensures button/help reflect the new language
+        };
+        window.__photosLangHooked = true;
+      }
+
+      // Style so that line breaks (
+) in localized error strings render as real breaks
+      if (status) status.style.whiteSpace = 'pre-line';
+
+      input?.addEventListener('change', async () => {
+        const t = T();
+        if (!status) return;
+        status.className = '';
+        status.textContent = '';
+
+        if (!input.files || !input.files.length){
+          // nothing selected
+          return;
+        }
+
+        const skipped = [];
+        const uploaded = [];
+        status.textContent = t.uploading || 'Uploading…';
+
+        for (const file of input.files){
+          const isVideo = file.type?.startsWith('video/');
+          const limit   = isVideo ? MAX_VIDEO : MAX_IMAGE;
+
+          // size gate (localized, with newline support via pre-line)
+          if (file.size > limit){
+            const msg = isVideo
+              ? (t.tooBigVideo ? t.tooBigVideo(file.name, humanSize(file.size), humanSize(limit))
+                                : `${file.name} (${humanSize(file.size)}) — too large. Max ${humanSize(limit)} for videos.`)
+              : (t.tooBigImage ? t.tooBigImage(file.name, humanSize(file.size), humanSize(limit))
+                                : `${file.name} (${humanSize(file.size)}) — too large. Max ${humanSize(limit)} for images.`);
+            skipped.push(msg);
+            continue;
+          }
+
+          const fd = new FormData();
+          fd.append('file', file);
+          fd.append('upload_preset', UPLOAD_PRESET);
+          if (FOLDER) fd.append('folder', FOLDER);
+
+          try {
+            const endpoint = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`;
+            const res = await fetch(endpoint, { method: 'POST', body: fd });
+            if (!res.ok){
+              skipped.push(t.presetFail || 'Upload failed. Please check cloud name & unsigned preset.');
+              continue;
+            }
+            const data = await res.json();
+            if (data.secure_url) uploaded.push(data.secure_url);
+          } catch (e){
+            skipped.push(t.fail || 'Upload failed. Check your connection or try again.');
+          }
+        }
+
+        // allow picking same files again later
+        input.value = '';
+
+        // Show localized success/none
+        if (uploaded.length){
+          status.textContent = t.done || 'Upload complete ✅';
+          status.classList.add('ok');
+        } else if (!skipped.length){
+          status.textContent = t.none || 'No files uploaded.';
+          status.classList.add('err');
+        } else {
+          // keep err class for mixed cases when everything skipped
+          status.textContent = (t.none || 'No files uploaded.') + '
+';
+          status.classList.add('err');
+        }
+
+        // Append skipped reasons (localized). Each on its own line.
+        if (skipped.length){
+          const list = document.createElement('ul');
+          list.style.margin = '6px 0 0';
+          list.style.paddingLeft = '18px';
+          for (const m of skipped){
+            const li = document.createElement('li');
+            li.textContent = m; // pre-line will show any 
+
+            list.appendChild(li);
+          }
+          status.appendChild(list);
+        }
+      });
+    })();
+  </script>
+  <script>
+    // --- Global i18n bridge so Photos uploader can always read translations ---
+    (function i18nBridge(){
+      // If top-level let/const were used, they are NOT on window.
+      // Promote them if present so other scripts can access.
+      try {
+        if (typeof window.translations === 'undefined' && typeof translations !== 'undefined') {
+          window.translations = translations;
+        }
+      } catch(e) {}
+      try {
+        if (typeof window.currentLang === 'undefined' && typeof currentLang !== 'undefined') {
+          window.currentLang = currentLang;
+        }
+      } catch(e) {}
+
+      // Helper that always returns a valid dictionary
+      const T = () => (window.translations?.[window.currentLang]) || (typeof translations !== 'undefined' && translations[currentLang]) || (window.translations?.en) || {};
+
+      // Ensure Photos texts reflect the current language
+      function syncPhotosTexts(){
+        const t = T();
+        const btnLbl  = document.getElementById('upload-btn-label');
+        const helps   = document.querySelectorAll('.up-help');
+        if (btnLbl) btnLbl.textContent = t.btn || 'Upload files';
+        helps.forEach(el => el.textContent = t.help || 'Upload your video / photo here.');
+        const st = document.getElementById('upload-status');
+        if (st) st.style.whiteSpace = 'pre-line';
+      }
+
+      // Patch setLanguage (idempotent). Also keep window.currentLang in sync.
+      if (typeof window.setLanguage === 'function' && !window.__langPatchV3){
+        const __orig = window.setLanguage;
+        window.setLanguage = function(lang){
+          try { window.currentLang = lang; } catch(e) {}
+          __orig(lang);
+          syncPhotosTexts();
+        };
+        window.__langPatchV3 = true;
+      }
+
+      // Initial sync on DOM ready
+      if (document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', syncPhotosTexts);
+      } else {
+        syncPhotosTexts();
+      }
+    })();
+  </script>
 </body>
 </html>
