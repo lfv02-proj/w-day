@@ -8,6 +8,7 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="favicon2.png">
+  <!-- Uploadcare v1 Regular CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-regular.min.css">
 
   <style>
@@ -86,7 +87,7 @@
      .hero p { font-size: 1rem; }
      .castle-image { width:180px; opacity:.75; }
 	 .todo-h{ font-size:1rem; }
-	 .upload-cta{grid-template-columns: 1fr; justify-items: center;}
+	 .upload-cta{grid-template-columns: 1fr;}
      .upload-wrap{ max-width:none; }
     }
 
@@ -134,70 +135,51 @@
 	
 /* Upload */
     .upload-cta{
-      display: grid;
-      grid-template-columns: max-content max-content; /* keep columns to content width */
-      justify-content: center;  /* center the pair as a group */
-      align-items: start;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
       gap: 24px;
-	  margin-top:8px;
+      justify-items: center;  /* center each column */
+      align-items: start;     /* top align blocks */
+      margin-top: 8px;
     }
 
-	.photos{ font-family: Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans',
-             'Liberation Sans', sans-serif; background:var(--bg); margin:0; padding:24px; color:#2b2b2b; --accent:#8b5e3c; --accent-dark:#70452c; --bg:#f8f3ef; }
-	
-    .upload-wrap{
-	  display:inline-flex;
+    .upload-wrap{ 
+      display:inline-flex;
+      flex-direction:column;   
+      align-items:center;      /* center children */
+      gap:.5rem; 
       width:100%;
-      max-width:400px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;      /* center the button / card */
-      gap:.5rem;
+      max-width: 420px;
     }
-	
+
     .upload-btn{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:10px 14px;        /* smaller */
-      font-size:14px;          /* smaller */
+      padding:10px 14px;        
+      font-size:14px;          
       border-radius:12px;
       border: 1px solid #d0d7de;
       background:#eee;
       color: #0f1722;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       cursor:pointer;
       transition:transform .05s ease, background .2s ease;
       user-select:none;
     }
-	
-	.ubtn{
-	  display: inline-block;
-      line-height: 1;
-      white-space: nowrap;
-	}
-	
-	.upload-icon{
-	  width: 18px;
-      height: 18px;
-      display: inline-block;
-      vertical-align: middle;
-      flex: 0 0 18px;
-	}
-	
+
     .upload-btn:hover{ background:#f4f4f4; }
     .upload-btn:active{ transform:translateY(1px); }
-    .upload-btn svg{ width:16px; height:16px; }
-   
-    #upload-status > * { white-space: pre-line; }
-	#upload-status li  { white-space: pre-line; }
+
+    .upload-icon{
+      width: 18px; height: 18px; display: inline-block; vertical-align: middle; flex: 0 0 18px;
+    }
+
+    .up-help{ font-size:16px; text-align:center; }
+
     #upload-status{ font-size:.95rem; color:#222; text-align:center; }
     #upload-status.ok{ color:#137333; }   /* green when done */
     #upload-status.err{ color:#b22222; }  /* red on error */
-	
-	#section-photos .up-help{ text-align:center; width:100%; font-size:16px;}
-	#section-photos .card{ width:100%; }
-    #section-photos .wrap{ margin:0; }
+    #upload-status > *{ white-space: pre-line; }
 
 /* Thing to do */
 	.todo-guide{ display:grid; gap:18px; margin-top:16px; }
@@ -205,7 +187,6 @@
     .todo-h{ font-family:'Playfair Display', serif; color:#6b4b32; font-size:1.05rem; margin:0 0 10px; }
     .todo-list{ padding-left:18px; }
     .todo-list li{ margin:6px 0; }
-
 	
   </style>
 </head>
@@ -358,50 +339,47 @@
         <section id="section-photos" class="section">
 		 <p id="text-photos"></p>
 		  
-		 <div class="upload-cta">
-		 <!-- First button (Cloudinary) -->
-		 <div class="upload-wrap">
-         <span id="uhelp" class="up-help"></span>
-		 <!-- the “button” -->
-         <label class="upload-btn" for="guestMedia" style="margin-inline:auto;">
-          <!-- tiny upload icon -->
-          <svg class="upload-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-          <path d="M12 16V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M6 10l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M21 20H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-           <span id="ubtn">Upload files</span>
-         </label>
-         <!-- hidden input -->
-         <input id="guestMedia" type="file" accept="image/*,video/*" multiple style="display:none" />
-         <div id="upload-status" aria-live="polite"></div>
-         </div>
+		  <div class="upload-cta">
+		  <!-- First button (Cloudinary) -->
+		  <div class="upload-wrap">
+		  <span class="up-help" id="upload-help">Upload your video / photo here.</span>
+		  <!-- the “button” -->
+		  <label class="upload-btn" for="guestMedia">
+		   <svg class="upload-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+		   <path d="M12 16V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+		   <path d="M6 10l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+		   <path d="M21 20H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+		   </svg>
+		    <span class="upload-btn-label" id="upload-btn-label">Upload files</span>
+		  </label>
+		  <!-- hidden input -->
+		  <input id="guestMedia" type="file" accept="image/*,video/*" multiple style="display:none" />
+		  <div id="upload-status" aria-live="polite"></div>
+		  </div>
 
-        <!-- Second button -->
-		<div class="upload-wrap">
-		 <span id="uhelp2" class="up-help"></span>
-		 <div class="card" style="margin-inline:auto;">
-		 <!-- 2) Uploader configuration (context) -->
-		 <uc-config ctx-name="my-uploader" pubkey="8dcd5158107962c7f0e3" source-list="local, camera, gdrive, facebook" 
-		 files-view-mode="grid" userAgentIntegration="llm-js"></uc-config>
-		 <!-- 3) Regular mode uploader with requested theme classes -->
-		 <uc-file-uploader-regular ctx-name="my-uploader" class="uc-light uc-purple"></uc-file-uploader-regular>
-		 </div>
-		</div>
-			
-        </div>  
+          <!-- Second button (Uploadcare) -->
+		  <div class="upload-wrap">
+		   <span class="up-help" id="upload-help-uc">Upload your video / photo here.</span>
+		   <div class="card" style="margin-inline:auto;">
+		   <uc-config ctx-name="my-uploader" pubkey="8dcd5158107962c7f0e3" source-list="local, camera, gdrive, facebook" 
+		   files-view-mode="grid" userAgentIntegration="llm-js"></uc-config>
+		   <uc-file-uploader-regular ctx-name="my-uploader" class="uc-light uc-purple"></uc-file-uploader-regular>
+		   </div>
+		  </div>
+		  
+		  </div>  
 		</section>
         
 		<!-- Scheduling of Wed -->
 		<section id="section-party" class="section">
 		 <p id="text-party"></p>
-
+		
 		</section>
 		
 		<!-- Donations -->
         <section id="section-registry" class="section">
 		<p id="text-registry"> </p>
-
+		
 		</section>
 
         <!-- RSVP -->
@@ -458,7 +436,7 @@
             <!-- Message -->
             <div class="form-group">
               <label for="msgtext" > 
-				<span id="msgadd"> </span></br>
+				<span id="msgadd_label"> </span></br>
 				<span style="font-size:16px;" id="msgadd2"> </span>
 		      </label>
               <textarea id="msgtext" name="message" rows="4" placeholder=""></textarea>
@@ -486,7 +464,7 @@
     const weddingDate      = new Date("July 17, 2027 17:00:00").getTime();
     const countdownElement = document.getElementById("countdown");
 
-    /* Translations (added errors/success + placeholders) */
+    /* Translations (added errors/success + placeholders + photos texts) */
     const translations = {
       en: {
         home:"Home", story:"About us", travel:"For Guests", todo:"Things to Do", photos:"Photos", party:"Contact", registry:"Donations", rsvp:"RSVP",
@@ -521,16 +499,14 @@
         success:"🎉 Thank you! Your RSVP has been sent successfully.",
         fail:"There was an error. Please try again later.",
         network:"Network error. Please check your connection.",
-		ubtn: "Upload files",
-        uhelp: "Upload your video / photo here.",
-        uhelp2: "Upload your video / photo here.",
+		btn: "Upload files",
+        help: "Upload your video / photo here.",
         uploading: "Uploading…",
         done: "Upload complete ✅",
         none: "No files uploaded.",
-        fail: "Upload failed. Check your connection or try again.",
         presetFail: "Upload failed. Please check cloud name & unsigned preset.",
-		tooBigImage: (name, size, limit) => `${name} (${size}) — too large.\nMax ${limit} for images.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size}) — too large.\nMax ${limit} for videos.`
+        tooBigImage: (name, size, limit) => `${name} (${size})\n— too large.\nMax ${limit} for images.`,
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— too large.\nMax ${limit} for videos.`
       },
       pt: {
         home:"Início", story:"Sobre o Casal", travel:"Convidados", todo:"O Que Fazer", photos:"Fotos", party:"Contato", registry:"Doações", rsvp:"Confirmação",
@@ -565,15 +541,14 @@
         success:"🎉 Obrigado! Sua confirmação foi enviada com sucesso.",
         fail:"Ocorreu um erro. Tente novamente mais tarde.",
         network:"Erro de rede. Verifique sua conexão.",
-		ubtn: "Enviar arquivos",
-        uhelp: "Envie seu vídeo / foto aqui.",
+		btn: "Enviar arquivos",
+        help: "Envie seu vídeo / foto aqui.",
         uploading: "Enviando…",
         done: "Envio concluído ✅",
         none: "Nenhum arquivo enviado.",
-        fail: "Falha no envio. Verifique sua conexão e tente novamente.",
         presetFail: "Falha no envio. Verifique o cloud name e o preset unsigned.",
-        tooBigImage: (name, size, limit) => `${name} (${size}) — muito grande. Máx. ${limit} para imagens.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size}) — muito grande. Máx. ${limit} para vídeos.`
+        tooBigImage: (name, size, limit) => `${name} (${size})\n— muito grande. Máx. ${limit} para imagens.`,
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— muito grande. Máx. ${limit} para vídeos.`
 
       },
       uk: {
@@ -609,15 +584,14 @@
         success              :"🎉 Дякуємо! Ваш RSVP надіслано.",
         fail                 :"Сталася помилка. Спробуйте пізніше.",
         network              :"Помилка мережі. Перевірте з’єднання.",
-        ubtn: "Завантажити файли",
-        uhelp: "Завантажте тут ваше відео / фото.",
+        btn: "Завантажити файли",
+        help: "Завантажте тут ваше відео / фото.",
         uploading: "Завантаження…",
         done: "Завантаження завершено ✅",
         none: "Файлів не завантажено.",
-        fail: "Помилка під час завантаження. Перевірте інтернет і спробуйте ще раз.",
         presetFail: "Помилка. Перевірте назву хмари та unsigned preset.",
-        tooBigImage: (name, size, limit) => `${name} (${size}) — завеликий. Макс ${limit} для зображень.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size}) — завеликий. Макс ${limit} для відео.`
+        tooBigImage: (name, size, limit) => `${name} (${size})\n— завеликий. Макс ${limit} для зображень.`,
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— завеликий. Макс ${limit} для відео.`
       },
       cz: {
         home:"Domů", story:"Náš Příběh", travel:"Cestování", todo:"Co Dělat", photos:"Fotky", party:"Svatební Hosté", registry:"Dary", rsvp:"Potvrdit Účast",
@@ -652,15 +626,14 @@
         success:"🎉 Děkujeme! Vaše RSVP bylo úspěšně odesláno.",
         fail:"Došlo k chybě. Zkuste to prosím později.",
         network:"Chyba sítě. Zkontrolujte připojení.",
-        ubtn:  "Nahrát soubory",
-        uhelp: "Sem nahrajte své video / fotku.",
+        btn: "Nahrát soubory",
+        help: "Sem nahrajte své video / fotku.",
         uploading: "Nahrávání…",
         done: "Nahrávání dokončeno ✅",
         none: "Žádné soubory nenahrány.",
-        fail: "Nahrávání selhalo. Zkontrolujte připojení a zkuste to znovu.",
         presetFail: "Nahrávání selhalo. Zkontrolujte cloud name a unsigned preset.",
-        tooBigImage: (name, size, limit) => `${name} (${size}) — příliš velké. Max ${limit} pro obrázky.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size}) — příliš velké. Max ${limit} pro videa.`
+        tooBigImage: (name, size, limit) => `${name} (${size})\n— příliš velké. Max ${limit} pro obrázky.`,
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— příliš velké. Max ${limit} pro videa.`
 		
       }
     };
@@ -692,6 +665,13 @@
       el.textContent = tpl.replace("{years}", parts.years).replace("{months}", parts.months).replace("{days}", parts.days);
     }
     setInterval(updateRelationshipCountdown, 1000*60*60*12); updateRelationshipCountdown();
+
+    /* Photos text sync */
+    function syncPhotosTexts(){
+      const t = translations[currentLang] || translations.en;
+      document.querySelectorAll('.up-help').forEach(el => el.textContent = t.help || 'Upload your video / photo here.');
+      document.querySelectorAll('.upload-btn-label').forEach(el => el.textContent = t.btn || 'Upload files');
+    }
 
     /* Language switcher */
     function setLanguage(lang) {
@@ -731,25 +711,20 @@
       document.getElementById("rsvp_n_s").textContent          = translations[lang]["rsvp_n_s"];
       document.getElementById("emailpc").placeholder           = translations[lang]["email_placeholder"];
       document.getElementById("namepc").placeholder            = translations[lang]["name_placeholder"];
-      //document.getElementById("msgadd").firstChild && (document.getElementById("msgadd").firstChild.nodeValue = translations[lang]["msgadd"] + "</br>");
-      //document.getElementById("msgadd2").textContent           = translations[lang]["msgadd2"];
-	  const msgLabelEl = document.getElementById("msgadd");
-      if (msgLabelEl) msgLabelEl.textContent = translations[lang]["msgadd"] || "";
-      document.getElementById("msgadd2").textContent = translations[lang]["msgadd2"] || "";
-	  
+      const msgLabelEl = document.getElementById('msgadd_label');
+      if (msgLabelEl) msgLabelEl.textContent = translations[lang]['msgadd'] || '';
+      document.getElementById("msgadd2").textContent           = translations[lang]["msgadd2"] || '';
       document.getElementById("submitBtn").textContent         = translations[lang]["submit_btn"];
       // Also translate the VALUES that get submitted
       document.getElementById("attend_yes").value = translations[lang]["rsvp_yes"];
       document.getElementById("attend_no").value  = translations[lang]["rsvp_no"];
       document.getElementById("sleep_yes").value  = translations[lang]["rsvp_y_s"];
       document.getElementById("sleep_no").value   = translations[lang]["rsvp_n_s"]; 
-      document.getElementById("ubtn").value       = translations[lang]["ubtn"]; 
-      document.getElementById("uhelp").value      = translations[lang]["uhelp"];
-      document.getElementById("uhelp2").value     = translations[lang]["uhelp2"];
-	  
+
       updateRelationshipCountdown();
       updateCountdown();
 	  syncRsvpUiToLanguage(lang);
+      syncPhotosTexts();
     }
 
     // Section switching
@@ -809,13 +784,11 @@
 
   const namepc = document.getElementById('namepc');
   const emailpc = document.getElementById('emailpc');
-  //const messagepc = document.getElementById('messagepc');
   if (namepc)    namepc.placeholder    = t.name_placeholder || '';
   if (emailpc)   emailpc.placeholder   = t.email_placeholder || '';
-  //if (messagepc) messagepc.placeholder = t.message_placeholder || '';
-  const msgadd = document.getElementById('msgadd');
+  const msgLabelEl = document.getElementById('msgadd_label');
+  if (msgLabelEl) msgLabelEl.textContent = t.msgadd || '';
   const msgadd2 = document.getElementById('msgadd2');
-  if (msgadd && msgadd.firstChild) msgadd.firstChild.nodeValue = (t.msgadd || '') + ' ';
   if (msgadd2) msgadd2.textContent = t.msgadd2 || '';
   const submitBtn = document.getElementById('submitBtn');
   if (submitBtn && t.submit_btn) submitBtn.textContent = t.submit_btn;
@@ -833,7 +806,7 @@
 
 // 2) Use localized strings inside the validator every time it runs
 function validateRsvpForm(){
-  const tErr = translations[currentLang].errors || translations[currentLang]; // support both structures
+  const tErr = translations[currentLang].errors || translations[currentLang];
   let valid = true;
 
   const nameInput  = document.getElementById('namepc');
@@ -844,7 +817,6 @@ function validateRsvpForm(){
   const errSleep   = document.getElementById('err-sleepo');
   const status     = document.getElementById('form-status');
 
-  // clear previous
   [errName, errEmail, errAttend, errSleep].forEach(e=> e && (e.textContent=''));
   status.textContent=''; status.classList.remove('visible');
 
@@ -853,29 +825,28 @@ function validateRsvpForm(){
   const nameRegex = /^[A-Za-zÀ-ž]+(?:[-' ][A-Za-zÀ-ž]+)+$/;
   const repetitive = /(.)\1{3,}/;
 
-  if (!nameVal){ errName.textContent = tErr.name_required || tErr.err_name_required; valid = false; }
-  else if (!nameRegex.test(nameVal)){ errName.textContent = tErr.name_invalid || tErr.err_name_invalid; valid = false; }
-  else if (repetitive.test(nameVal)){ errName.textContent = tErr.name_repetitive || tErr.err_name_repetitive; valid = false; }
+  if (!nameVal){ errName.textContent = tErr.name_required; valid = false; }
+  else if (!nameRegex.test(nameVal)){ errName.textContent = tErr.name_invalid; valid = false; }
+  else if (repetitive.test(nameVal)){ errName.textContent = tErr.name_repetitive; valid = false; }
 
   const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-  if (!emailVal){ errEmail.textContent = tErr.email_required || tErr.err_email_required; valid = false; }
-  else if (!emailRegex.test(emailVal)){ errEmail.textContent = tErr.email_invalid || tErr.err_email_invalid; valid = false; }
+  if (!emailVal){ errEmail.textContent = tErr.email_required; valid = false; }
+  else if (!emailRegex.test(emailVal)){ errEmail.textContent = tErr.email_invalid; valid = false; }
 
   const attendChecked = document.querySelector('input[name="attendance"]:checked');
   const sleepChecked  = document.querySelector('input[name="sleepo"]:checked');
-  if (!attendChecked){ errAttend.textContent = tErr.attendance_required || tErr.err_attendance_required; valid = false; }
-  if (!sleepChecked){  errSleep.textContent  = tErr.sleepo_required || tErr.err_sleepo_required; valid = false; }
-  // ❌ Cross-field conflict: Not attending but sleeping over
+  if (!attendChecked){ errAttend.textContent = tErr.attendance_required; valid = false; }
+  if (!sleepChecked){  errSleep.textContent  = tErr.sleepo_required; valid = false; }
   const __attendNo__ = document.getElementById('attend_no');
   const __sleepYes__ = document.getElementById('sleep_yes');
-  if (document.querySelector('input[name="attendance"]:checked') && document.querySelector('input[name="sleepo"]:checked') && __attendNo__?.checked && __sleepYes__?.checked){
+  if (attendChecked && sleepChecked && __attendNo__?.checked && __sleepYes__?.checked){
     errSleep.textContent = tErr.conflict_sleep_when_not_attending || 'This combination is not possible: you will not attend but plan to sleep over.';
     valid = false;
   }
 
   if (!valid) {
     status.style.color = '#b22222';
-    status.textContent = tErr.check_fields || tErr.err_form_check_fields || '⚠️ Please check the fields above.';
+    status.textContent = tErr.check_fields || '⚠️ Please check the fields above.';
     status.classList.add('visible');
   }
   return valid;
@@ -893,150 +864,114 @@ function validateRsvpForm(){
       const resp = await fetch(form.action, { method:'POST', body:new FormData(form), headers:{ Accept:'application/json' }});
       if (resp.ok){
         status.style.color = 'green';
-        status.textContent = (translations[currentLang].success || translations[currentLang].success_message || 'Success!');
+        status.textContent = (translations[currentLang].success || 'Success!');
         status.classList.add('visible');
         form.reset();
       } else {
         status.style.color = 'red';
-        status.textContent = (translations[currentLang].fail || translations[currentLang].error_message || 'Error');
+        status.textContent = (translations[currentLang].fail || 'Error');
         status.classList.add('visible');
       }
     }catch(err){
       status.style.color = 'red';
-      status.textContent = (translations[currentLang].network || translations[currentLang].network_error || 'Network error');
+      status.textContent = (translations[currentLang].network || 'Network error');
       status.classList.add('visible');
     }
   });
 })();
 
-// 4) Finally, call syncRsvpUiToLanguage(lang) inside setLanguage(lang)
-// Example (add this to the end of your existing setLanguage):
-//   syncRsvpUiToLanguage(lang);
+  </script>
 
-</script>
+  <!-- Uploadcare v1 (Regular, ESM) -->
+  <script type="module">
+    import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-inline.min.js';
+    UC.defineComponents(UC);
+  </script>
 
-<!-- 4) File Uploader v1 Regular JS (pinned to major v1, ESM) -->
-<script type="module">
-import * as UC from 'https://cdn.jsdelivr.net/npm/@uploadcare/file-uploader@1/web/uc-file-uploader-inline.min.js';
+  <!-- Cloudinary (unsigned) with translations -->
+  <script>
+  (function(){
+    const CLOUD_NAME    = 'dx6q3zyyh';
+    const UPLOAD_PRESET = 'wedding_guest_uploads';
+    const FOLDER        = 'wedding_guests';
 
-// 5) Define custom elements per docs
-UC.defineComponents(UC);
+    const MAX_IMAGE = 10 * 1024 * 1024;   // 10 MB
+    const MAX_VIDEO = 100 * 1024 * 1024;  // 100 MB
 
-// (Optional) You can access the component instance later if needed, e.g.:
-// const el = document.querySelector('uc-file-uploader-regular[ctx-name="my-uploader"]');
-// el.addEventListener('uc-success', (e)=> console.log('Uploaded:', e.detail));
-</script>
+    const input  = document.getElementById('guestMedia');
+    const status = document.getElementById('upload-status');
 
-<script>
-(() => {
-  const CLOUD_NAME    = 'dx6q3zyyh';
-  const UPLOAD_PRESET = 'wedding_guest_uploads'; // UNSIGNED preset in Cloudinary
-  const FOLDER        = 'wedding/guests';        // optional
+    const humanSize = b => (b/1024/1024).toFixed(1) + ' MB';
+    const T = () => (window.translations?.[window.currentLang] || window.translations?.en || {});
 
-  // Limits
-  const MAX_IMAGE = 10 * 1024 * 1024;   // 10 MB
-  const MAX_VIDEO = 100 * 1024 * 1024;  // 100 MB
+    function setStatus(text, kind){
+      if (!status) return;
+      status.classList.remove('ok','err');
+      if (kind) status.classList.add(kind);
+      status.textContent = text || '';
+    }
 
-  // Elements (match your HTML exactly)
-  const input   = document.getElementById('guestMedia');
-  const status  = document.getElementById('upload-status');
-  const helpEl  = document.getElementById('uhelp');
-  const helpEl2 = document.getElementById('uhelp2');
-  const btnLbl  = document.getElementById('ubtn');
+    if (!input || !status) return;
 
-  const humanSize = b => (b/1024/1024).toFixed(1) + ' MB';
+    input.addEventListener('change', async () => {
+      const t = T();
+      setStatus('', null);
+      if (!input.files || !input.files.length){ return; }
 
-  // Localized strings helper (falls back to EN)
-  function T() { return translations?.[window.currentLang] || translations.en; }
+      [...status.querySelectorAll('ul')].forEach(u=>u.remove());
+      const skipped = []; const uploaded = [];
+      setStatus(t.uploading || 'Uploading…', null);
 
-  function syncUploadUi() {
-    const t = T();
-    if (btnLbl) btnLbl.textContent = t.ubtn     || 'Upload files';
-    if (helpEl) helpEl.textContent = t.uhelp    || 'Upload your video / photo here.';
-    if (helpEl2) helpEl2.textContent = t.uhelp2 || 'Upload your video / photo here.';
-  }
-  syncUploadUi();
+      for (const file of input.files){
+        const isVideo = file.type && file.type.startsWith('video/');
+        const limit   = isVideo ? MAX_VIDEO : MAX_IMAGE;
 
-  // Re-run on language switch
-  if (typeof window.setLanguage === 'function' && !window.__uploadLangPatched){
-    const __orig = window.setLanguage;
-    window.setLanguage = function(lang){
-      __orig(lang);
-      syncUploadUi();
-    };
-    window.__uploadLangPatched = true;
-  }
-
-  input.addEventListener('change', async () => {
-    const t = T();
-    status.className = '';
-    status.textContent = '';
-
-    if (!input.files || !input.files.length) return;
-
-    const skipped = [];
-    const uploaded = [];
-    status.textContent = t.uploading || 'Uploading…';
-
-    for (const file of input.files) {
-      const isVideo = file.type?.startsWith('video/');
-      const limit   = isVideo ? MAX_VIDEO : MAX_IMAGE;
-
-      if (file.size > limit) {
-        skipped.push(
-          isVideo
-           ? T().tooBigVideo(file.name, humanSize(file.size), humanSize(limit))
-           : T().tooBigImage(file.name, humanSize(file.size), humanSize(limit))
-        );
-        continue;
-      }
-
-      const fd = new FormData();
-      fd.append('file', file);
-      fd.append('upload_preset', UPLOAD_PRESET); // UNSIGNED
-      if (FOLDER) fd.append('folder', FOLDER);
-
-      try {
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, { method:'POST', body: fd });
-        if (!res.ok) {
-          skipped.push(t.presetFail || 'Upload failed. Check Cloudinary setup.');
+        if (file.size > limit){
+          const msg = isVideo
+            ? (t.tooBigVideo ? t.tooBigVideo(file.name, humanSize(file.size), humanSize(limit)) : `${file.name} (${humanSize(file.size)})\n— too large.\nMax ${humanSize(limit)} for videos.`)
+            : (t.tooBigImage ? t.tooBigImage(file.name, humanSize(file.size), humanSize(limit)) : `${file.name} (${humanSize(file.size)})\n— too large.\nMax ${humanSize(limit)} for images.`);
+          skipped.push(msg);
           continue;
         }
-        const data = await res.json();
-        if (data.secure_url) uploaded.push(data.secure_url);
-      } catch (err) {
-        skipped.push(t.fail || 'Network error.');
+
+        const fd = new FormData();
+        fd.append('file', file);
+        fd.append('upload_preset', UPLOAD_PRESET);
+        if (FOLDER) fd.append('folder', FOLDER);
+
+        try{
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, { method:'POST', body: fd });
+          if (!res.ok){
+            skipped.push(t.presetFail || 'Upload failed. Please check cloud name & unsigned preset.');
+            continue;
+          }
+          const data = await res.json();
+          if (data.secure_url) uploaded.push(data.secure_url);
+        }catch(e){
+          skipped.push(t.fail || 'Network error.');
+        }
       }
-    }
 
-    // Let user re-select same files later
-    input.value = '';
+      input.value = '';
 
-    if (uploaded.length) {
-      status.textContent = t.done || 'Upload complete ✅';
-      status.classList.add('ok');
-      // If you want previews, add a #preview container and append <img>/<video> here.
-    } else if (!skipped.length) {
-      status.textContent = t.none || 'No files uploaded.';
-      status.classList.add('err');
-    }
+      if (uploaded.length){ setStatus(t.done || 'Upload complete ✅', 'ok'); }
+      else if (!skipped.length){ setStatus(t.none || 'No files uploaded.', 'err'); }
+      else { setStatus('', 'err'); }
 
-    if (skipped.length) {
-      status.classList.remove('ok');
-      status.classList.add('err');
-      const list = document.createElement('ul');
-      list.style.margin = '6px 0 0';
-      list.style.paddingLeft = '18px';
-      skipped.forEach(m => { 
-	  const li = document.createElement('li'); li.textContent = m; list.appendChild(li); 
-	  });
-      // Remove old list if present
-      while (status.lastChild && status.lastChild !== status.firstChild) status.removeChild(status.lastChild);
-      status.appendChild(list);
-    }
-  });
-})();
-</script>
+      if (skipped.length){
+        const ul = document.createElement('ul');
+        ul.style.margin = '6px 0 0';
+        ul.style.paddingLeft = '18px';
+        ul.style.whiteSpace = 'pre-line';
+        skipped.forEach(m => { const li = document.createElement('li'); li.textContent = m; ul.appendChild(li); });
+        status.appendChild(ul);
+      }
+    });
+
+    // keep Photos texts in sync on first load
+    syncPhotosTexts();
+  })();
+  </script>
 
 </body>
 </html>

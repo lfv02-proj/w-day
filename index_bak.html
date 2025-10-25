@@ -139,14 +139,16 @@
       justify-content: center;  /* center the pair as a group */
       align-items: start;
       gap: 24px;
+	  margin-top:8px;
     }
 
 	.photos{ font-family: Lato, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans',
              'Liberation Sans', sans-serif; background:var(--bg); margin:0; padding:24px; color:#2b2b2b; --accent:#8b5e3c; --accent-dark:#70452c; --bg:#f8f3ef; }
 	
     .upload-wrap{
+	  display:inline-flex;
       width:100%;
-      max-width:340px;
+      max-width:400px;
       display:flex;
       flex-direction:column;
       align-items:center;      /* center the button / card */
@@ -189,9 +191,10 @@
    
     #upload-status > * { white-space: pre-line; }
 	#upload-status li  { white-space: pre-line; }
-    #upload-status{ font-size:.95rem; color:#222; }
+    #upload-status{ font-size:.95rem; color:#222; text-align:center; }
     #upload-status.ok{ color:#137333; }   /* green when done */
     #upload-status.err{ color:#b22222; }  /* red on error */
+	
 	#section-photos .up-help{ text-align:center; width:100%; font-size:16px;}
 	#section-photos .card{ width:100%; }
     #section-photos .wrap{ margin:0; }
@@ -356,7 +359,7 @@
 		 <p id="text-photos"></p>
 		  
 		 <div class="upload-cta">
-		 <!-- First button -->
+		 <!-- First button (Cloudinary) -->
 		 <div class="upload-wrap">
          <span id="uhelp" class="up-help"></span>
 		 <!-- the “button” -->
@@ -367,7 +370,7 @@
           <path d="M6 10l6-6 6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M21 20H3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-           <span id="ubtn">Upload files</span>
+           <span id="ubtn" class="ubtn">Upload files</span>
          </label>
          <!-- hidden input -->
          <input id="guestMedia" type="file" accept="image/*,video/*" multiple style="display:none" />
@@ -376,7 +379,7 @@
 
         <!-- Second button -->
 		<div class="upload-wrap">
-		 <span id="uhelp" class="up-help"></span>
+		 <span id="uhelp2" class="up-help"></span>
 		 <div class="card" style="margin-inline:auto;">
 		 <!-- 2) Uploader configuration (context) -->
 		 <uc-config ctx-name="my-uploader" pubkey="8dcd5158107962c7f0e3" source-list="local, camera, gdrive, facebook" 
@@ -454,11 +457,11 @@
 
             <!-- Message -->
             <div class="form-group">
-              <label for="msgadd" > 
+              <label for="msgtext" > 
 				<span id="msgadd"> </span></br>
 				<span style="font-size:16px;" id="msgadd2"> </span>
 		      </label>
-              <textarea id="msgadd" name="message" rows="4" placeholder=""></textarea>
+              <textarea id="msgtext" name="message" rows="4" placeholder=""></textarea>
             </div>
 
             <!-- Submit -->
@@ -520,6 +523,7 @@
         network:"Network error. Please check your connection.",
 		ubtn: "Upload files",
         uhelp: "Upload your video / photo here.",
+        uhelp2: "Upload your video / photo here.",
         uploading: "Uploading…",
         done: "Upload complete ✅",
         none: "No files uploaded.",
@@ -727,8 +731,12 @@
       document.getElementById("rsvp_n_s").textContent          = translations[lang]["rsvp_n_s"];
       document.getElementById("emailpc").placeholder           = translations[lang]["email_placeholder"];
       document.getElementById("namepc").placeholder            = translations[lang]["name_placeholder"];
-      document.getElementById("msgadd").firstChild && (document.getElementById("msgadd").firstChild.nodeValue = translations[lang]["msgadd"] + "</br>");
-      document.getElementById("msgadd2").textContent           = translations[lang]["msgadd2"];
+      //document.getElementById("msgadd").firstChild && (document.getElementById("msgadd").firstChild.nodeValue = translations[lang]["msgadd"] + "</br>");
+      //document.getElementById("msgadd2").textContent           = translations[lang]["msgadd2"];
+	  const msgLabelEl = document.getElementById("msgadd");
+      if (msgLabelEl) msgLabelEl.textContent = translations[lang]["msgadd"] || "";
+      document.getElementById("msgadd2").textContent = translations[lang]["msgadd2"] || "";
+	  
       document.getElementById("submitBtn").textContent         = translations[lang]["submit_btn"];
       // Also translate the VALUES that get submitted
       document.getElementById("attend_yes").value = translations[lang]["rsvp_yes"];
@@ -736,8 +744,9 @@
       document.getElementById("sleep_yes").value  = translations[lang]["rsvp_y_s"];
       document.getElementById("sleep_no").value   = translations[lang]["rsvp_n_s"]; 
       document.getElementById("ubtn").value       = translations[lang]["ubtn"]; 
-      document.getElementById("uhelp").value      = translations[lang]["uhelp"]; 
-
+      document.getElementById("uhelp").value      = translations[lang]["uhelp"];
+      document.getElementById("uhelp2").value     = translations[lang]["uhelp2"];
+	  
       updateRelationshipCountdown();
       updateCountdown();
 	  syncRsvpUiToLanguage(lang);
@@ -919,109 +928,141 @@ UC.defineComponents(UC);
 </script>
 
 <script>
-(() => {
-  const CLOUD_NAME    = 'dx6q3zyyh';
-  const UPLOAD_PRESET = 'wedding_guest_uploads'; // UNSIGNED preset in Cloudinary
-  const FOLDER        = 'wedding/guests';        // optional
+/* ---- Photos translation sync (handles both helpers + any upload buttons) ---- */
+function syncPhotosTexts(){
+  const t = (window.translations?.[window.currentLang]) || window.translations?.en || {};
+  // update ALL helper lines
+  document.querySelectorAll('.up-help').forEach(el => {
+    el.textContent = t.help || 'Upload your video / photo here.';
+  });
+  // update ALL button labels (in case you add more later)
+  document.querySelectorAll('ubtn').forEach(el => {
+    el.textContent = t.btn || 'Upload files';
+  });
+}
 
-  // Limits
+// Patch setLanguage once so Photos section always refreshes
+if (typeof window.setLanguage === 'function' && !window.__photosLangPatched){
+  const __origSetLang = window.setLanguage;
+  window.setLanguage = function(lang){
+    __origSetLang(lang);
+    syncPhotosTexts();
+  };
+  window.__photosLangPatched = true;
+}
+// Initial sync (in case Photos is visible on first load)
+syncPhotosTexts();
+
+
+/* ---- Cloudinary unsigned upload with localized messages ---- */
+(function(){
+  const CLOUD_NAME    = 'dx6q3zyyh';
+  const UPLOAD_PRESET = 'wedding_guest_uploads'; // UNSIGNED preset
+  const FOLDER        = 'wedding_guests';        // optional
+
   const MAX_IMAGE = 10 * 1024 * 1024;   // 10 MB
   const MAX_VIDEO = 100 * 1024 * 1024;  // 100 MB
 
-  // Elements (match your HTML exactly)
-  const input   = document.getElementById('guestMedia');
-  const status  = document.getElementById('upload-status');
-  const helpEl  = document.getElementById('uhelp');
-  const btnLbl  = document.getElementById('ubtn');
+  const input  = document.getElementById('guestMedia');
+  const status = document.getElementById('upload-status');
 
+  const T = () => (window.translations?.[window.currentLang] || window.translations?.en || {});
   const humanSize = b => (b/1024/1024).toFixed(1) + ' MB';
 
-  // Localized strings helper (falls back to EN)
-  function T() { return translations?.[window.currentLang] || translations.en; }
-
-  function syncUploadUi() {
-    const t = T();
-    if (btnLbl) btnLbl.textContent = t.ubtn || 'Upload files';
-    if (helpEl) helpEl.textContent = t.uhelp || 'Upload your video / photo here.';
+  function setStatus(text, kind){
+    if (!status) return;
+    status.classList.remove('ok','err');
+    if (kind) status.classList.add(kind);
+    status.textContent = text || '';
   }
-  syncUploadUi();
 
-  // Re-run on language switch
-  if (typeof window.setLanguage === 'function' && !window.__uploadLangPatched){
-    const __orig = window.setLanguage;
+  // Also refresh Photos texts if user changes language later
+  if (typeof window.setLanguage === 'function' && !window.__cloudinaryLangPatched){
+    const orig = window.setLanguage;
     window.setLanguage = function(lang){
-      __orig(lang);
-      syncUploadUi();
+      orig(lang);
+      // nothing else needed here; syncPhotosTexts() already called above
     };
-    window.__uploadLangPatched = true;
+    window.__cloudinaryLangPatched = true;
   }
+
+  if (!input || !status) return; // safety: if not on this page yet
 
   input.addEventListener('change', async () => {
     const t = T();
-    status.className = '';
-    status.textContent = '';
+    setStatus('', null);
 
-    if (!input.files || !input.files.length) return;
+    if (!input.files || !input.files.length){
+      // user cancelled
+      return;
+    }
 
-    const skipped = [];
+    // clear any previous list
+    [...status.querySelectorAll('ul')].forEach(u => u.remove());
+
+    const skipped  = [];
     const uploaded = [];
-    status.textContent = t.uploading || 'Uploading…';
 
-    for (const file of input.files) {
-      const isVideo = file.type?.startsWith('video/');
+    setStatus(t.uploading || 'Uploading…', null);
+
+    for (const file of input.files){
+      const isVideo = file.type && file.type.startsWith('video/');
       const limit   = isVideo ? MAX_VIDEO : MAX_IMAGE;
 
-      if (file.size > limit) {
-        skipped.push(
-          isVideo
-           ? T().tooBigVideo(file.name, humanSize(file.size), humanSize(limit))
-           : T().tooBigImage(file.name, humanSize(file.size), humanSize(limit))
-        );
+      if (file.size > limit){
+        const msg = isVideo
+          ? (t.tooBigVideo ? t.tooBigVideo(file.name, humanSize(file.size), humanSize(limit))
+                           : `${file.name} (${humanSize(file.size)}) — too large. Max ${humanSize(limit)} for videos.`)
+          : (t.tooBigImage ? t.tooBigImage(file.name, humanSize(file.size), humanSize(limit))
+                           : `${file.name} (${humanSize(file.size)}) — too large. Max ${humanSize(limit)} for images.`);
+        skipped.push(msg);
         continue;
       }
 
       const fd = new FormData();
       fd.append('file', file);
-      fd.append('upload_preset', UPLOAD_PRESET); // UNSIGNED
+      fd.append('upload_preset', UPLOAD_PRESET);
       if (FOLDER) fd.append('folder', FOLDER);
 
-      try {
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, { method:'POST', body: fd });
-        if (!res.ok) {
-          skipped.push(t.presetFail || 'Upload failed. Check Cloudinary setup.');
+      try{
+        const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`, {
+          method: 'POST',
+          body: fd
+        });
+        if (!res.ok){
+          skipped.push(t.presetFail || 'Upload failed. Please check cloud name & unsigned preset.');
           continue;
         }
         const data = await res.json();
         if (data.secure_url) uploaded.push(data.secure_url);
-      } catch (err) {
+      }catch(err){
         skipped.push(t.fail || 'Network error.');
       }
     }
 
-    // Let user re-select same files later
+    // allow selecting same files again
     input.value = '';
 
-    if (uploaded.length) {
-      status.textContent = t.done || 'Upload complete ✅';
-      status.classList.add('ok');
-      // If you want previews, add a #preview container and append <img>/<video> here.
-    } else if (!skipped.length) {
-      status.textContent = t.none || 'No files uploaded.';
-      status.classList.add('err');
+    if (uploaded.length){
+      setStatus(t.done || 'Upload complete ✅', 'ok');
+    } else if (!skipped.length){
+      setStatus(t.none || 'No files uploaded.', 'err');
+    } else {
+      setStatus('', 'err'); // we'll append errors below
     }
 
-    if (skipped.length) {
-      status.classList.remove('ok');
-      status.classList.add('err');
-      const list = document.createElement('ul');
-      list.style.margin = '6px 0 0';
-      list.style.paddingLeft = '18px';
-      skipped.forEach(m => { 
-	  const li = document.createElement('li'); li.textContent = m; list.appendChild(li); 
-	  });
-      // Remove old list if present
-      while (status.lastChild && status.lastChild !== status.firstChild) status.removeChild(status.lastChild);
-      status.appendChild(list);
+    if (skipped.length){
+      const ul = document.createElement('ul');
+      ul.style.margin = '6px 0 0';
+      ul.style.paddingLeft = '18px';
+      // show line breaks if your translation uses \n
+      ul.style.whiteSpace = 'pre-line';
+      skipped.forEach(m => {
+        const li = document.createElement('li');
+        li.textContent = m;
+        ul.appendChild(li);
+      });
+      status.appendChild(ul);
     }
   });
 })();
