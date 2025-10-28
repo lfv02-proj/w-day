@@ -18,6 +18,7 @@
       --accent-color: #8b5e3c;
       --font-title: 'Playfair Display', serif;
       --font-body: 'Lato', sans-serif;
+	  --gutter: clamp(16px, 5vw, 28px);
     }
 
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -26,6 +27,8 @@
       font-family: var(--font-body);
       color: var(--text-color);
       line-height: 1.6;
+	  padding-left: max(var(--gutter), env(safe-area-inset-left));
+      padding-right: max(var(--gutter), env(safe-area-inset-right));
     }
 
 /* Language Selector */
@@ -65,11 +68,12 @@
       background: linear-gradient(to top, #f8f3ef, #f2e9e4);
       box-shadow: 0 2px 8px rgba(0,0,0,.05);
       transition: background .5s ease; text-align: center;
+	  padding-inline: clamp(16px, 4vw, 24px);
     }
     .hero-content { position: relative; z-index: 2; }
     .hero p { font-size: 1rem; color: var(--text-color); max-width: 700px; margin: 0 auto; line-height: 1.8; }
 
-    .section { display: none; }
+    .section { display: none; padding-inline: clamp(8px, 3.5vw, 20px); }
     .section.active { display: block; }
     .section p { opacity: 0; transform: translateY(10px); animation: fadeInUp .6s ease forwards; }
     @keyframes fadeInUp { to { opacity:1; transform: translateY(0); } }
@@ -137,19 +141,25 @@
     .upload-cta{
       display:grid;
       grid-template-columns: repeat(2, minmax(260px, 1fr));
-      gap: 24px;
+      gap: clamp(16px, 3vw, 32px);
       justify-items: center;  /* center each column */
       align-items: start;     /* top align blocks */
+	  max-width: 1000px; 
       margin-top: 8px;
+	  margin-inline: auto;
     }
 
-    .upload-wrap{ 
-      display:inline-flex;
-      flex-direction:column;   
-      align-items:center;      /* center children */
-      gap:.5rem; 
+    #section-photos .upload-wrap{
       width:100%;
       max-width: 420px;
+	  margin-inline: auto;     /* center the column itself */
+	  display:flex; flex-direction:column; align-items:center; gap:.5rem;
+    }
+	
+	#section-photos .card{
+      width:100%;
+      max-width:420px;
+      margin-inline:auto;
     }
 
     .upload-btn{
@@ -180,6 +190,19 @@
     #upload-status.ok{ color:#137333; }   /* green when done */
     #upload-status.err{ color:#b22222; }  /* red on error */
     #upload-status > *{ white-space: pre-line; }
+
+    /* The web component itself can be centered & constrained */
+    uc-file-uploader-regular{
+      display:block;
+      width:100%;
+      max-width:420px;         /* match the first button’s width */
+      margin-inline:auto;      /* center it */
+    }
+
+    /* If Uploadcare injects an inner container, center that too */
+    #section-photos .card :where(.uc-container, .uc-light){
+      margin-inline:auto;
+    }
 
 /* Thing to do */
 	.todo-guide{ display:grid; gap:18px; margin-top:16px; }
@@ -452,7 +475,7 @@
   </section>
 
   <footer class="footer-castle">
-    <p>© 2025 Ana & Lucas. All Rights Reserved.</p>
+    <p>© 2025 Ana & Lucas. All Rights Reserved. v1.2</p> 
   </footer>
 
   <!-- Scripts -->
@@ -879,7 +902,6 @@ function validateRsvpForm(){
     }
   });
 })();
-
   </script>
 
   <!-- Uploadcare v1 (Regular, ESM) -->
