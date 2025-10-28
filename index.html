@@ -48,6 +48,7 @@
     .details {
       display: flex; justify-content: center; align-items: center; gap: 1.8rem;
       font-size: 1.05rem; color: #6b4b32; font-family: 'Lora', serif; letter-spacing: .5px; margin-top: 1rem;
+	  padding-inline: clamp(12px, 4vw, 24px); max-width: 1000px; margin-left: auto; margin-right: auto;
     }
     .details .divider { color: #bda98b; font-size: 1.2rem; }
     .details a { color: #8b5e3c; text-decoration: none; display: inline-flex; align-items: center; transition: .3s; }
@@ -93,6 +94,7 @@
 	 .todo-h{ font-size:1rem; }
 	 .upload-cta{grid-template-columns: 1fr;}
      .upload-wrap{ max-width:none; }
+	 .details{ padding-inline: clamp(14px, 6vw, 24px); }
     }
 
     #relationshipCountdown { color:#7a7a7a; }
@@ -138,15 +140,16 @@
     .rsvp-btn:hover { background:#70452c; }
 	
 /* Upload */
-    .upload-cta{
-      display:grid;
+    #section-photos .upload-cta{
       grid-template-columns: repeat(2, minmax(260px, 1fr));
-      gap: clamp(16px, 3vw, 32px);
       justify-items: center;  /* center each column */
-      align-items: start;     /* top align blocks */
-	  max-width: 1000px; 
-      margin-top: 8px;
-	  margin-inline: auto;
+	  width: 100%;
+      max-width: 420px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
     }
 
     #section-photos .upload-wrap{
@@ -211,6 +214,15 @@
     .todo-list{ padding-left:18px; }
     .todo-list li{ margin:6px 0; }
 	
+	.todo-list{ list-style:none; padding-left:0; margin:0; display:grid; gap:10px; }
+    .todo-list li{ position:relative; padding:10px 12px 12px 28px; background:#fff; border:1px solid #eadfd7; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,.04); }
+    .todo-list li:before{ content:""; position:absolute; left:12px; top:18px; width:6px; height:6px; border-radius:50%; background:#c9b7a8; box-shadow:10px 0 0 0 #e6ddd6; }
+
+    .item-title{ display:block; font-weight:600; color:#6b4b32; margin-bottom:2px; }
+    .item-note{ display:block; color:#5a5a5a; font-size:.95rem; }
+    .gm{ display:inline-block; margin-top:6px; font-size:.92rem; color:#8b5e3c; text-decoration:none; border-bottom:1px solid rgba(139,94,60,.35); padding-bottom:1px; transition:.2s; }
+    .gm:hover{ color:#70452c; border-bottom-color:#70452c; }
+	
   </style>
 </head>
 <body>
@@ -247,13 +259,13 @@
     <nav>
       <ul>
         <li><a href="#" id="nav-home" class="active">Home</a></li>
-        <li><a href="#" id="nav-story">About us</a></li>
-        <li><a href="#" id="nav-travel">For Guests</a></li>
-        <li><a href="#" id="nav-todo">Things to Do</a></li>
-        <li><a href="#" id="nav-photos">Photos</a></li>
-        <li><a href="#" id="nav-party">Contact</a></li>
-        <li><a href="#" id="nav-registry">Donations</a></li>
-        <li><a href="#" id="nav-rsvp">RSVP</a></li>
+        <li><a href="#" id="nav-story">              About us</a></li>
+        <li><a href="#" id="nav-travel">             For Guests</a></li>
+        <li><a href="#" id="nav-todo">               Things to Do</a></li>
+        <li><a href="#" id="nav-photos">             Photos</a></li>
+        <li><a href="#" id="nav-party">              Contact</a></li>
+        <li><a href="#" id="nav-registry">           Donations</a></li>
+        <li><a href="#" id="nav-rsvp">               RSVP</a></li>
       </ul>
     </nav>
   </header>
@@ -314,16 +326,20 @@
 		 <p id="text-todo"></p>
            <div id="todo-guide" class="todo-guide">
            <div class="todo-block">
-           <h3 class="todo-h">Short trips near Mikulov (15–40 min)</h3>
+           <h3 class="todo-h" id="todo-head-nearby">Short trips near Mikulov (15–40 min)</h3>
            <ul class="todo-list">
-           <li><strong>Lednice–Valtice Area</strong> – UNESCO landscape, fairy‑tale chateaux, Minaret tower, bike paths by ponds.</li>
-           <li><strong>Pálava Hills</strong> – Easy scenic hikes (Děvín ruins viewpoint), spring wildflowers, vineyards everywhere.</li>
-           <li><strong>Valtice Wine Cellars</strong> – National Wine Salon in the chateau; curated tastings.</li>
+           <li><span class="item-title">Lednice–Valtice Area</span>
+		       <span class="item-note">UNESCO landscape, fairy‑tale chateaux, Minaret tower, bike paths by ponds.</span>
+		       <a class="gm" target="_blank" href="https://maps.app.goo.gl/SL7mT9ZAj9cCpQXt6">Google Maps</a>
+		   </li>
+		   
+           <li><span class="item-title">Pálava Hills</span>         Easy scenic hikes (Děvín ruins viewpoint), spring wildflowers, vineyards everywhere.</li>
+           <li><span class="item-title">Valtice Wine Cellars</span> National Wine Salon in the chateau; curated tastings.</li>
            </ul>
            </div>
            
            <div class="todo-block">
-           <h3 class="todo-h">Brno • City vibes (40–60 min from Mikulov)</h3>
+           <h3 class="todo-h" id="todo-head-brno">Brno • City vibes (40–60 min from Mikulov)</h3>
            <ul class="todo-list">
            <li><strong>Špilberk Castle</strong> – Hilltop fortress with views; seasonal exhibitions.</li>
            <li><strong>Villa Tugendhat (UNESCO)</strong> – Modernist gem by Mies van der Rohe (book guided tour ahead).</li>
@@ -335,7 +351,7 @@
            </div>
            
            <div class="todo-block">
-           <h3 class="todo-h">Food & coffee (Brno)</h3>
+           <h3 class="todo-h" id="todo-head-food">Food & coffee (Brno)</h3>
            <ul class="todo-list">
            <li><strong>Café Placzek</strong> – Coffee & cakes in a chic setting.</li>
            <li><strong>Café SKØG</strong> – Nordic‑style coffee & brunch; veggie friendly.</li>
@@ -346,7 +362,7 @@
            </div>
            
            <div class="todo-block">
-           <h3 class="todo-h">Easy logistics</h3>
+           <h3 class="todo-h" id="todo-head-logistics">Easy logistics</h3>
            <ul class="todo-list">
            <li><strong>Getting around:</strong> Mikulov is walkable. In Brno, trams/trolleys are reliable; buy tickets in apps or kiosks.</li>
            <li><strong>Payments:</strong> Cards widely accepted; carry some cash for wine cellars/markets.</li>
@@ -529,7 +545,12 @@
         none: "No files uploaded.",
         presetFail: "Upload failed. Please check cloud name & unsigned preset.",
         tooBigImage: (name, size, limit) => `${name} (${size})\n— too large.\nMax ${limit} for images.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size})\n— too large.\nMax ${limit} for videos.`
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— too large.\nMax ${limit} for videos.`,
+		gmaps_open: "Open in Google Maps",
+        todo_head_nearby: "Short trips near Mikulov (15–40 min)",
+        todo_head_brno: "Brno • City vibes (40–60 min)",
+        todo_head_food: "Food & coffee (Brno)",
+        todo_head_logistics: "Easy logistics"
       },
       pt: {
         home:"Início", story:"Sobre o Casal", travel:"Convidados", todo:"O Que Fazer", photos:"Fotos", party:"Contato", registry:"Doações", rsvp:"Confirmação",
@@ -571,7 +592,12 @@
         none: "Nenhum arquivo enviado.",
         presetFail: "Falha no envio. Verifique o cloud name e o preset unsigned.",
         tooBigImage: (name, size, limit) => `${name} (${size})\n— muito grande. Máx. ${limit} para imagens.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size})\n— muito grande. Máx. ${limit} para vídeos.`
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— muito grande. Máx. ${limit} para vídeos.`,
+		gmaps_open: "Abrir no Google Maps",
+        todo_head_nearby: "Passeios curtos perto de Mikulov (15–40 min)",
+        todo_head_brno: "Brno • Clima de cidade (40–60 min)",
+        todo_head_food: "Comida & café (Brno)",
+        todo_head_logistics: "Logística fácil"
 
       },
       uk: {
@@ -614,7 +640,12 @@
         none: "Файлів не завантажено.",
         presetFail: "Помилка. Перевірте назву хмари та unsigned preset.",
         tooBigImage: (name, size, limit) => `${name} (${size})\n— завеликий. Макс ${limit} для зображень.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size})\n— завеликий. Макс ${limit} для відео.`
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— завеликий. Макс ${limit} для відео.`,
+		gmaps_open: "Відкрити в Google Maps",
+        todo_head_nearby: "Короткі поїздки біля Мікулова (15–40 хв)",
+        todo_head_brno: "Брно • Міська атмосфера (40–60 хв)",
+        todo_head_food: "Їжа та кава (Брно)",
+        todo_head_logistics: "Прості дрібниці логістики"
       },
       cz: {
         home:"Domů", story:"Náš Příběh", travel:"Cestování", todo:"Co Dělat", photos:"Fotky", party:"Svatební Hosté", registry:"Dary", rsvp:"Potvrdit Účast",
@@ -656,7 +687,12 @@
         none: "Žádné soubory nenahrány.",
         presetFail: "Nahrávání selhalo. Zkontrolujte cloud name a unsigned preset.",
         tooBigImage: (name, size, limit) => `${name} (${size})\n— příliš velké. Max ${limit} pro obrázky.`,
-        tooBigVideo: (name, size, limit) => `${name} (${size})\n— příliš velké. Max ${limit} pro videa.`
+        tooBigVideo: (name, size, limit) => `${name} (${size})\n— příliš velké. Max ${limit} pro videa.`,
+		gmaps_open: "Otevřít v Google Maps",
+        todo_head_nearby: "Krátké výlety u Mikulova (15–40 min)",
+        todo_head_brno: "Brno • Městská atmosféra (40–60 min)",
+        todo_head_food: "Jídlo & káva (Brno)",
+        todo_head_logistics: "Snadná logistika"
 		
       }
     };
@@ -742,7 +778,18 @@
       document.getElementById("attend_yes").value = translations[lang]["rsvp_yes"];
       document.getElementById("attend_no").value  = translations[lang]["rsvp_no"];
       document.getElementById("sleep_yes").value  = translations[lang]["rsvp_y_s"];
-      document.getElementById("sleep_no").value   = translations[lang]["rsvp_n_s"]; 
+      document.getElementById("sleep_no").value   = translations[lang]["rsvp_n_s"];
+	  
+	  // --- To-Do section headings ---
+      ['nearby','brno','food','logistics'].forEach(k => {
+        const el = document.getElementById('todo-head-'+k);
+        if (el) el.textContent = translations[lang]['todo_head_'+k];
+      });
+      
+      // --- "Open in Google Maps" links inside the To-Do section ---
+      document.querySelectorAll('#section-todo a.gm').forEach(a => {
+        a.textContent = translations[lang].gmaps_open;
+      });
 
       updateRelationshipCountdown();
       updateCountdown();
