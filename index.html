@@ -210,7 +210,7 @@
 /* Thing to do */
 	.todo-guide{ display:grid; gap:18px; margin-top:16px; }
     .todo-block{ background:#fff; border:1px solid #eadfd7; border-radius:12px; padding:16px; box-shadow:0 2px 8px rgba(0,0,0,.04); }
-    .todo-h{ font-family:'Playfair Display', serif; color:#6b4b32; font-size:1.05rem; margin:0 0 10px; }
+    .todo-h{ font-family: var(--font-body);, serif; color:#6b4b32; font-size:1.05rem; margin:0 0 10px; }
     .todo-list{ padding-left:18px; }
     .todo-list li{ margin:6px 0; }
 	
@@ -321,55 +321,125 @@
           </div>
         </section>
 
-<!-- Things to Do -->
+<!-- Things to Do  'nearby','brno','food','logistics' --> 
         <section id="section-todo" class="section">
 		 <p id="text-todo"></p>
            <div id="todo-guide" class="todo-guide">
            <div class="todo-block">
+		   
            <h3 class="todo-h" id="todo-head-nearby">Short trips near Mikulov (15–40 min)</h3>
-           <ul class="todo-list">
-           <li><span class="item-title">Lednice–Valtice Area</span>
-		       <span class="item-note">UNESCO landscape, fairy‑tale chateaux, Minaret tower, bike paths by ponds.</span>
+		   <ul class="todo-list">
+           
+		   <li><span class="item-title" id="todo-t1">Lednice–Valtice Area</span>
+		       <span class="item-note"  id="todo-i1">UNESCO landscape, fairy‑tale chateaux, Minaret tower, bike paths by ponds.</span>
 		       <a class="gm" target="_blank" href="https://maps.app.goo.gl/SL7mT9ZAj9cCpQXt6">Google Maps</a>
 		   </li>
 		   
-           <li><span class="item-title">Pálava Hills</span>         Easy scenic hikes (Děvín ruins viewpoint), spring wildflowers, vineyards everywhere.</li>
-           <li><span class="item-title">Valtice Wine Cellars</span> National Wine Salon in the chateau; curated tastings.</li>
+           <li>
+             <span class="item-title" id="todo-t2">Pálava Hills</span>
+             <span class="item-note"  id="todo-i2">Easy scenic hikes (Děvín ruins viewpoint), spring wildflowers, vineyards everywhere.</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=P%C3%A1lava+D%C4%9Bv%C3%ADn">Open in Google Maps</a>
+           </li>
+           
+           <li>
+             <span class="item-title" id="todo-t3">Valtice Wine Cellars</span>
+             <span class="item-note"  id="todo-i3">National Wine Salon in the chateau; curated tastings.</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=National+Wine+Salon+Valtice">Open in Google Maps</a>
+           </li>
+		   
            </ul>
            </div>
            
            <div class="todo-block">
            <h3 class="todo-h" id="todo-head-brno">Brno • City vibes (40–60 min from Mikulov)</h3>
            <ul class="todo-list">
-           <li><strong>Špilberk Castle</strong> – Hilltop fortress with views; seasonal exhibitions.</li>
-           <li><strong>Villa Tugendhat (UNESCO)</strong> – Modernist gem by Mies van der Rohe (book guided tour ahead).</li>
-           <li><strong>Capuchin Crypt</strong> – Historic crypt with mummified monks (small but unique).</li>
-           <li><strong>St. Peter & Paul Cathedral</strong> – Skyline towers; tradition: bells ring at 11:00.</li>
-           <li><strong>Zelný trh (Cabbage Market)</strong> – Daily farmers’ market: fruit, pastries, flowers.</li>
-           <li><strong>Brno Underground</strong> – Labyrinth under the square; timed entry tickets.</li>
+             <li>
+               <span class="item-title" id="todo-b1">Špilberk Castle</span>
+               <span class="item-note"  id="todo-b1n">Hilltop fortress with views; seasonal exhibitions.</span>
+               <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=%C5%A0pilberk+Castle+Brno">Open in Google Maps</a>
+             </li>
+             <li>
+               <span class="item-title" id="todo-b2">Villa Tugendhat (UNESCO)</span>
+               <span class="item-note"  id="todo-b2n">Modernist gem by Mies van der Rohe (book guided tour ahead).</span>
+               <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Villa+Tugendhat+Brno">Open in Google Maps</a>
+             </li>
+             <li>
+               <span class="item-title" id="todo-b3">Capuchin Crypt</span>
+               <span class="item-note"  id="todo-b3n">Historic crypt with mummified monks (small but unique).</span>
+               <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Capuchin+Crypt+Brno">Open in Google Maps</a>
+             </li>
+             <li>
+               <span class="item-title" id="todo-b4">St. Peter & Paul Cathedral</span>
+               <span class="item-note"  id="todo-b4n">Skyline towers; tradition: bells ring at 11:00.</span>
+               <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Cathedral+of+St+Peter+and+Paul+Brno">Open in Google Maps</a>
+             </li>
+             <li>
+               <span class="item-title" id="todo-b5">Zelný trh (Cabbage Market)</span>
+               <span class="item-note"  id="todo-b5n">Daily farmers’ market: fruit, pastries, flowers.</span>
+               <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Zeln%C3%BD+trh+Brno">Open in Google Maps</a>
+             </li>
+             <li>
+               <span class="item-title" id="todo-b6">Brno Underground</span>
+               <span class="item-note"  id="todo-b6n">Labyrinth under the square; timed entry tickets.</span>
+               <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Labyrint+pod+Zeln%C3%BDm+trhem+Brno">Open in Google Maps</a>
+             </li>
            </ul>
            </div>
            
            <div class="todo-block">
            <h3 class="todo-h" id="todo-head-food">Food & coffee (Brno)</h3>
            <ul class="todo-list">
-           <li><strong>Café Placzek</strong> – Coffee & cakes in a chic setting.</li>
-           <li><strong>Café SKØG</strong> – Nordic‑style coffee & brunch; veggie friendly.</li>
-           <li><strong>Bar that doesn’t exist</strong> – Craft cocktails; speakeasy vibe (come early on weekends).</li>
-           <li><strong>Borgo Agnese</strong> – Fine dining for a special night (reserve).</li>
-           <li><strong>Lokál U Caipla</strong> – Casual Czech classics: svíčková, schnitzel, beer.</li>
+           <li>
+             <span class="item-title" id="todo-f1">Café Placzek</span>
+             <span class="item-note"  id="todo-f1n">Coffee & cakes in a chic setting.</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+Placzek+Brno">Open in Google Maps</a>
+           </li>
+           <li>
+             <span class="item-title" id="todo-f2">Café SKØG</span>
+             <span class="item-note"  id="todo-f2n">Nordic-style coffee & brunch; veggie friendly.</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=SK%C3%98G+Urban+Hub+Brno">Open in Google Maps</a>
+           </li>
+           <li>
+             <span class="item-title" id="todo-f3">Bar that doesn’t exist</span>
+             <span class="item-note"  id="todo-f3n">Craft cocktails; speakeasy vibe (come early on weekends).</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Bar%2C+kter%C3%BD+neexistuje+Brno">Open in Google Maps</a>
+           </li>
+           <li>
+             <span class="item-title" id="todo-f4">Borgo Agnese</span>
+             <span class="item-note"  id="todo-f4n">Fine dining for a special night (reserve).</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Borgo+Agnese+Brno">Open in Google Maps</a>
+           </li>
+           <li>
+             <span class="item-title" id="todo-f5">Lokál U Caipla</span>
+             <span class="item-note"  id="todo-f5n">Casual Czech classics: svíčková, schnitzel, beer.</span>
+             <a class="gm" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Lok%C3%A1l+U+Caipla+Brno">Open in Google Maps</a>
+           </li>
            </ul>
            </div>
            
            <div class="todo-block">
            <h3 class="todo-h" id="todo-head-logistics">Easy logistics</h3>
            <ul class="todo-list">
-           <li><strong>Getting around:</strong> Mikulov is walkable. In Brno, trams/trolleys are reliable; buy tickets in apps or kiosks.</li>
-           <li><strong>Payments:</strong> Cards widely accepted; carry some cash for wine cellars/markets.</li>
-           <li><strong>Language:</strong> English works in most tourist spots; a friendly “Dobrý den” (hello) helps.</li>
-           <li><strong>Tipping:</strong> 5–10% appreciated in restaurants if service was good.</li>
-           <li><strong>Best times:</strong> Holy Hill & castle terraces at sunset; markets/cafés in the morning.</li>
+             <li>
+               <span class="item-title" id="todo-l1">Getting around</span>
+               <span class="item-note"  id="todo-l1n">Mikulov is walkable. In Brno, trams/trolleys are reliable; buy tickets in apps or kiosks.</span>
+             </li>
+             <li>
+               <span class="item-title" id="todo-l2">Payments</span>
+               <span class="item-note"  id="todo-l2n">Cards widely accepted; carry some cash for wine cellars/markets.</span>
+             </li>
+             <li>
+               <span class="item-title" id="todo-l3">Language</span>
+               <span class="item-note"  id="todo-l3n">English works in most tourist spots; a friendly “Dobrý den” (hello) helps.</span>
+             </li>
+             <li>
+               <span class="item-title" id="todo-l4">Best times</span>
+               <span class="item-note"  id="todo-l4n">Holy Hill & castle terraces at sunset; markets/cafés in the morning.</span>
+               <a class="gm" target="_blank" href="https://maps.app.goo.gl/TVgAocDz9jdDBWFg7">Open in Google Maps</a>
+             </li>
            </ul>
+
+
            </div>
            </div>
 		</section>
@@ -491,7 +561,7 @@
   </section>
 
   <footer class="footer-castle">
-    <p>© 2025 Ana & Lucas. All Rights Reserved. v1.2</p> 
+    <p>© 2025 Ana & Lucas. All Rights Reserved. v1.3</p> 
   </footer>
 
   <!-- Scripts -->
@@ -550,7 +620,32 @@
         todo_head_nearby: "Short trips near Mikulov (15–40 min)",
         todo_head_brno: "Brno • City vibes (40–60 min)",
         todo_head_food: "Food & coffee (Brno)",
-        todo_head_logistics: "Easy logistics"
+        todo_head_logistics: "Easy logistics",
+        todo_nearby_t1: "Lednice–Valtice Area",
+        todo_nearby_i1: "UNESCO landscape, fairy-tale chateaux, Minaret tower, bike paths by ponds.",
+        todo_nearby_t2: "Pálava Hills",
+        todo_nearby_i2: "Easy scenic hikes (Děvín ruins viewpoint), spring wildflowers, vineyards everywhere.",
+        todo_nearby_t3: "Valtice Wine Cellars",
+        todo_nearby_i3: "National Wine Salon in the chateau; curated tastings.",
+		// Brno
+        todo_brno_t1:"Špilberk Castle",                  todo_brno_i1:"Hilltop fortress with views; seasonal exhibitions.",
+        todo_brno_t2:"Villa Tugendhat (UNESCO)",         todo_brno_i2:"Modernist gem by Mies van der Rohe (book guided tour ahead).",
+        todo_brno_t3:"Capuchin Crypt",                   todo_brno_i3:"Historic crypt with mummified monks (small but unique).",
+        todo_brno_t4:"St. Peter & Paul Cathedral",       todo_brno_i4:"Skyline towers; tradition: bells ring at 11:00.",
+        todo_brno_t5:"Zelný trh (Cabbage Market)",       todo_brno_i5:"Daily farmers’ market: fruit, pastries, flowers.",
+        todo_brno_t6:"Brno Underground",                 todo_brno_i6:"Labyrinth under the square; timed entry tickets.",
+        // Food
+        todo_food_t1:"Café Placzek",                     todo_food_i1:"Coffee & cakes in a chic setting.",
+        todo_food_t2:"Café SKØG",                        todo_food_i2:"Nordic-style coffee & brunch; veggie friendly.",
+        todo_food_t3:"Bar that doesn’t exist",           todo_food_i3:"Craft cocktails; speakeasy vibe (come early on weekends).",
+        todo_food_t4:"Borgo Agnese",                     todo_food_i4:"Fine dining for a special night (reserve).",
+        todo_food_t5:"Lokál U Caipla",                   todo_food_i5:"Casual Czech classics: svíčková, schnitzel, beer.",
+        // Logistics
+        todo_logistics_t1:"Getting around",              todo_logistics_i1:"Mikulov is walkable. In Brno, trams/trolleys are reliable; buy tickets in apps or kiosks.",
+        todo_logistics_t2:"Payments",                    todo_logistics_i2:"Cards widely accepted; carry some cash for wine cellars/markets.",
+        todo_logistics_t3:"Language",                    todo_logistics_i3:"English works in most tourist spots; a friendly “Dobrý den” (hello) helps.",
+        todo_logistics_t4:"Best times",                  todo_logistics_i4:"Holy Hill & castle terraces at sunset; markets/cafés in the morning."
+		
       },
       pt: {
         home:"Início", story:"Sobre o Casal", travel:"Convidados", todo:"O Que Fazer", photos:"Fotos", party:"Contato", registry:"Doações", rsvp:"Confirmação",
@@ -597,7 +692,31 @@
         todo_head_nearby: "Passeios curtos perto de Mikulov (15–40 min)",
         todo_head_brno: "Brno • Clima de cidade (40–60 min)",
         todo_head_food: "Comida & café (Brno)",
-        todo_head_logistics: "Logística fácil"
+        todo_head_logistics: "Logística fácil",
+        todo_nearby_t1: "Área Lednice–Valtice",
+        todo_nearby_i1: "Paisagem da UNESCO, castelos de conto de fadas, torre Minarete, ciclovias ao redor de lagoas.",
+        todo_nearby_t2: "Montes de Pálava",
+        todo_nearby_i2: "Trilhas cênicas fáceis (mirante das ruínas de Děvín), flores silvestres na primavera, vinhedos por toda parte.",
+        todo_nearby_t3: "Adegas de Valtice",
+        todo_nearby_i3: "Salão Nacional do Vinho no castelo; degustações selecionadas.",
+        // Brno
+        todo_brno_t1:"Castelo Špilberk",                 todo_brno_i1:"Fortaleza no alto com vista; exposições sazonais.",
+        todo_brno_t2:"Villa Tugendhat (UNESCO)",         todo_brno_i2:"Joia modernista de Mies van der Rohe (reserve o tour guiado).",
+        todo_brno_t3:"Cripta dos Capuchinhos",           todo_brno_i3:"Cripta histórica com monges mumificados (pequena, porém única).",
+        todo_brno_t4:"Catedral de São Pedro e Paulo",    todo_brno_i4:"Torres do skyline; tradição: os sinos tocam às 11h.",
+        todo_brno_t5:"Zelný trh (Mercado do Repolho)",   todo_brno_i5:"Feira diária: frutas, doces, flores.",
+        todo_brno_t6:"Subsolo de Brno",                  todo_brno_i6:"Labirinto sob a praça; ingressos com horário.",
+        // Food
+        todo_food_t1:"Café Placzek",                     todo_food_i1:"Cafés e bolos em ambiente charmoso.",
+        todo_food_t2:"Café SKØG",                        todo_food_i2:"Café e brunch estilo nórdico; opções veggies.",
+        todo_food_t3:"Bar que não existe",               todo_food_i3:"Coquetéis autorais; clima speakeasy (chegue cedo no fim de semana).",
+        todo_food_t4:"Borgo Agnese",                     todo_food_i4:"Fine dining para noite especial (reserve).",
+        todo_food_t5:"Lokál U Caipla",                   todo_food_i5:"Clássicos tchecos casuais: svíčková, schnitzel, cerveja.",
+        // Logistics
+        todo_logistics_t1:"Deslocamento",                todo_logistics_i1:"Mikulov é caminhável. Em Brno, bondes/trolleybus funcionam bem; compre bilhetes no app ou quiosques.",
+        todo_logistics_t2:"Pagamentos",                  todo_logistics_i2:"Cartão é amplamente aceito; leve dinheiro para adegas/feirinhas.",
+        todo_logistics_t3:"Idioma",                      todo_logistics_i3:"Inglês funciona na maioria dos pontos; um “Dobrý den” ajuda.",
+        todo_logistics_t4:"Melhores momentos",           todo_logistics_i4:"Svatý kopeček e terraços do castelo ao pôr do sol; mercados/cafés pela manhã."
 
       },
       uk: {
@@ -645,7 +764,32 @@
         todo_head_nearby: "Короткі поїздки біля Мікулова (15–40 хв)",
         todo_head_brno: "Брно • Міська атмосфера (40–60 хв)",
         todo_head_food: "Їжа та кава (Брно)",
-        todo_head_logistics: "Прості дрібниці логістики"
+        todo_head_logistics: "Прості дрібниці логістики",
+        todo_nearby_t1: "Комплекс Ледніце–Вальтіце",
+        todo_nearby_i1: "Об’єкт ЮНЕСКО: палаци, мінарет, велодоріжки біля ставків.",
+        todo_nearby_t2: "Пагорби Паляви",
+        todo_nearby_i2: "Прості мальовничі маршрути (оглядовий майданчик руїн Дєвін), весняні квіти, виноградники усюди.",
+        todo_nearby_t3: "Винні льохи у Вальтіце",
+        todo_nearby_i3: "Національний винний салон у замку; кураторські дегустації.",
+		// Brno
+        todo_brno_t1:"Замок Шпілберк",                   todo_brno_i1:"Фортеця на пагорбі з краєвидами; сезонні виставки.",
+        todo_brno_t2:"Вілла Тугендхат (ЮНЕСКО)",         todo_brno_i2:"Модерністський шедевр Міса ван дер Рое (заздалегідь бронюйте тур).",
+        todo_brno_t3:"Капуцинський склеп",               todo_brno_i3:"Історичний склеп з муміфікованими монахами (невеликий, але унікальний).",
+        todo_brno_t4:"Кафедра Св. Петра і Павла",        todo_brno_i4:"Вежі на горизонті; традиція: дзвони б’ють об 11:00.",
+        todo_brno_t5:"Зелений ринок (Zelný trh)",        todo_brno_i5:"Щоденний базар: фрукти, випічка, квіти.",
+        todo_brno_t6:"Підземелля Брно",                  todo_brno_i6:"Лабіринт під площею; вхід за часовими слотами.",
+        // Food
+        todo_food_t1:"Кафе Placzek",                     todo_food_i1:"Кава та тістечка в затишній атмосфері.",
+        todo_food_t2:"Кафе SKØG",                        todo_food_i2:"Скандинавська кава та бранч; є вегетаріанські опції.",
+        todo_food_t3:"Бар, якого не існує",              todo_food_i3:"Авторські коктейлі; спікізі-настрій (у вихідні краще приходити рано).",
+        todo_food_t4:"Borgo Agnese",                     todo_food_i4:"Вишукана вечеря для особливої нагоди (потрібне бронювання).",
+        todo_food_t5:"Lokál U Caipla",                   todo_food_i5:"Чеська класика без пафосу: свічкова, шніцель, пиво.",
+        // Logistics
+        todo_logistics_t1:"Як пересуватись",             todo_logistics_i1:"Мікулов зручно оглядати пішки. У Брно трамваї/тролейбуси надійні; квитки в додатках або кіосках.",
+        todo_logistics_t2:"Платежі",                     todo_logistics_i2:"Картки всюди приймають; для винних льохів/ринків майте трохи готівки.",
+        todo_logistics_t3:"Мова",                        todo_logistics_i3:"Англійська працює в більшості місць; привітне «Dobrý den» допомагає.",
+        todo_logistics_t4:"Найкращий час",               todo_logistics_i4:"Святий пагорб і тераси замку на заході; ринки/кафе зранку."
+		
       },
       cz: {
         home:"Domů", story:"Náš Příběh", travel:"Cestování", todo:"Co Dělat", photos:"Fotky", party:"Svatební Hosté", registry:"Dary", rsvp:"Potvrdit Účast",
@@ -692,8 +836,32 @@
         todo_head_nearby: "Krátké výlety u Mikulova (15–40 min)",
         todo_head_brno: "Brno • Městská atmosféra (40–60 min)",
         todo_head_food: "Jídlo & káva (Brno)",
-        todo_head_logistics: "Snadná logistika"
-		
+        todo_head_logistics: "Snadná logistika",
+        todo_nearby_t1: "Lednicko-valtický areál",
+        todo_nearby_i1: "UNESCO krajina, pohádkové zámky, Minaret, cyklostezky kolem rybníků.",
+        todo_nearby_t2: "Pálava (Děvín)",
+        todo_nearby_i2: "Snadné vyhlídkové trasy (vyhlídka u zříceniny Děvín), jarní květena, vinice všude kolem.",
+        todo_nearby_t3: "Valtické vinné sklepy",
+        todo_nearby_i3: "Národní salón vín na zámku; řízené degustace.",
+        // Brno
+        todo_brno_t1:"Hrad Špilberk",                     todo_brno_i1:"Pevnost na kopci s výhledy; sezónní výstavy.",
+        todo_brno_t2:"Vila Tugendhat (UNESCO)",           todo_brno_i2:"Modernistický skvost Miese van der Rohe (rezervujte si prohlídku).",
+        todo_brno_t3:"Kapucínská hrobka",                 todo_brno_i3:"Historická hrobka s mumifikovanými mnichy (malá, ale jedinečná).",
+        todo_brno_t4:"Katedrála sv. Petra a Pavla",       todo_brno_i4:"Dominanta siluety; tradice: zvony zvoní v 11:00.",
+        todo_brno_t5:"Zelný trh",                         todo_brno_i5:"Každodenní tržnice: ovoce, pečivo, květiny.",
+        todo_brno_t6:"Brněnské podzemí",                  todo_brno_i6:"Labyrint pod náměstím; vstup na časové sloty.",
+        // Food
+        todo_food_t1:"Café Placzek",                      todo_food_i1:"Káva a dorty v elegantním prostředí.",
+        todo_food_t2:"Café SKØG",                         todo_food_i2:"Severská káva a brunch; přátelské k vegetariánům.",
+        todo_food_t3:"Bar, který neexistuje",             todo_food_i3:"Autorské koktejly; speakeasy atmosféra (o víkendu přijďte dřív).",
+        todo_food_t4:"Borgo Agnese",                      todo_food_i4:"Fine dining na výjimečný večer (rezervace).",
+        todo_food_t5:"Lokál U Caipla",                    todo_food_i5:"Česká klasika na pohodu: svíčková, řízek, pivo.",
+        // Logistics
+        todo_logistics_t1:"Doprava",                      todo_logistics_i1:"Mikulov projdete pěšky. V Brně jezdí spolehlivě tramvaje/trolejbusy; jízdenky v appkách nebo kioscích.",
+        todo_logistics_t2:"Platby",                       todo_logistics_i2:"Karty se běžně berou; do sklípků/trhů se hodí hotovost.",
+        todo_logistics_t3:"Jazyk",                        todo_logistics_i3:"Angličtina ve většině míst stačí; přátelské „Dobrý den“ potěší.",
+        todo_logistics_t4:"Nejlepší časy",                todo_logistics_i4:"Svatý kopeček a zámecké terasy při západu; trhy/kavárny ráno."
+
       }
     };
 
@@ -782,9 +950,88 @@
 	  
 	  // --- To-Do section headings ---
       ['nearby','brno','food','logistics'].forEach(k => {
-        const el = document.getElementById('todo-head-'+k);
+        const el = document.getElementById('todo-head-' + k);
         if (el) el.textContent = translations[lang]['todo_head_'+k];
       });
+	  
+     function syncTodoItemsToLanguage(lang){
+       const t = translations[lang] || translations.en;
+     
+       // clear any previous form status/errors (kept from your version)
+       const status = document.getElementById('form-status');
+       if (status){ status.textContent=''; status.classList.remove('visible'); status.removeAttribute('style'); }
+       ['err-name','err-email','err-attendance','err-sleepo'].forEach(id=>{
+         const el = document.getElementById(id);
+         if (el){ el.textContent=''; el.removeAttribute('style'); }
+       });
+     
+       // base labels you already had (kept)
+       const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
+       set('rsvp_name', t.rsvp_name); set('rsvp_mail', t.rsvp_mail);
+       set('rsvp_attend_label', t.rsvp_attend_label); set('rsvp_q', t.rsvp_q);
+       set('rsvp_yes', t.rsvp_yes); set('rsvp_no', t.rsvp_no);
+       set('rsvp_y_s', t.rsvp_y_s); set('rsvp_n_s', t.rsvp_n_s);
+     
+       // placeholders (kept)
+       const namepc = document.getElementById('namepc');
+       const emailpc = document.getElementById('emailpc');
+       if (namepc)  namepc.placeholder  = t.name_placeholder || '';
+       if (emailpc) emailpc.placeholder = t.email_placeholder || '';
+       const msgadd = document.getElementById('msgadd');
+       const msgadd2= document.getElementById('msgadd2');
+       if (msgadd && msgadd.firstChild) msgadd.firstChild.nodeValue = (t.msgadd || '') + ' ';
+       if (msgadd2) msgadd2.textContent = t.msgadd2 || '';
+       const submitBtn = document.getElementById('submitBtn');
+       if (submitBtn && t.submit_btn) submitBtn.textContent = t.submit_btn;
+     
+       // radios values (kept)
+       const attendYes = document.getElementById('attend_yes');
+       const attendNo  = document.getElementById('attend_no');
+       const sleepYes  = document.getElementById('sleep_yes');
+       const sleepNo   = document.getElementById('sleep_no');
+       if (attendYes) attendYes.value = t.rsvp_yes;
+       if (attendNo)  attendNo.value  = t.rsvp_no;
+       if (sleepYes)  sleepYes.value  = t.rsvp_y_s;
+       if (sleepNo)   sleepNo.value   = t.rsvp_n_s;
+     
+       // ---- To-Do items text mapping (nearby + brno + food + logistics) ----
+       const pairs = [
+         // nearby (you already set these)
+         ['todo-t1','todo_nearby_t1'], ['todo-i1','todo_nearby_i1'],
+         ['todo-t2','todo_nearby_t2'], ['todo-i2','todo_nearby_i2'],
+         ['todo-t3','todo_nearby_t3'], ['todo-i3','todo_nearby_i3'],
+     
+         // brno
+         ['todo-b1','todo_brno_t1'], ['todo-b1n','todo_brno_i1'],
+         ['todo-b2','todo_brno_t2'], ['todo-b2n','todo_brno_i2'],
+         ['todo-b3','todo_brno_t3'], ['todo-b3n','todo_brno_i3'],
+         ['todo-b4','todo_brno_t4'], ['todo-b4n','todo_brno_i4'],
+         ['todo-b5','todo_brno_t5'], ['todo-b5n','todo_brno_i5'],
+         ['todo-b6','todo_brno_t6'], ['todo-b6n','todo_brno_i6'],
+     
+         // food
+         ['todo-f1','todo_food_t1'], ['todo-f1n','todo_food_i1'],
+         ['todo-f2','todo_food_t2'], ['todo-f2n','todo_food_i2'],
+         ['todo-f3','todo_food_t3'], ['todo-f3n','todo_food_i3'],
+         ['todo-f4','todo_food_t4'], ['todo-f4n','todo_food_i4'],
+         ['todo-f5','todo_food_t5'], ['todo-f5n','todo_food_i5'],
+     
+         // logistics
+         ['todo-l1','todo_logistics_t1'], ['todo-l1n','todo_logistics_i1'],
+         ['todo-l2','todo_logistics_t2'], ['todo-l2n','todo_logistics_i2'],
+         ['todo-l3','todo_logistics_t3'], ['todo-l3n','todo_logistics_i3'],
+         ['todo-l4','todo_logistics_t4'], ['todo-l4n','todo_logistics_i4'],
+       ];
+       pairs.forEach(([id,key])=>{
+         const el = document.getElementById(id);
+         if (el && t[key]) el.textContent = t[key];
+       });
+     
+       // label all Google Maps links
+       document.querySelectorAll('#section-todo a.gm')
+         .forEach(a => a.textContent = t.gmaps_open || 'Open in Google Maps');
+     }
+
       
       // --- "Open in Google Maps" links inside the To-Do section ---
       document.querySelectorAll('#section-todo a.gm').forEach(a => {
@@ -795,6 +1042,8 @@
       updateCountdown();
 	  syncRsvpUiToLanguage(lang);
       syncPhotosTexts();
+	  syncTodoItemsToLanguage(lang);
+
     }
 
     // Section switching
